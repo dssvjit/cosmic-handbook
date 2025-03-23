@@ -23,6 +23,16 @@ const HeroHeader = () => {
         Explore the future of technology through well-organized,
         community-driven documentation
       </span>
+      <div className="flex justify-start items-center gap-2">
+        <span className="text-md md:text-lg text-app-primary-dark/80 font-dm-sans ">
+          Passionately built by
+        </span>
+        <img
+          src="/assets/vectors/dss-logo-dark.svg"
+          alt="DSS Logo"
+          className="size-12 md:size-16"
+        />
+      </div>
     </div>
   );
 };
