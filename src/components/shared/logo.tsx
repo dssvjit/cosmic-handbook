@@ -1,32 +1,35 @@
-import { cn } from "@/lib/utils";
-import React, { RefObject } from "react";
+import { cn } from "@/utils/cn.util";
 
 interface LogoProps {
   withText?: boolean;
   className?: string;
-  ref?: React.RefObject<HTMLImageElement> | RefObject<HTMLDivElement>;
 }
 
-const Logo = ({ withText = false, className, ref }: LogoProps) => {
+const Logo = ({ withText = false, className }: LogoProps) => {
   if (!withText) {
     return (
-      <div ref={ref}>
+      <div className="flex justify-start items-center gap-1">
         <img
-          src="/assets/icons/logo.svg"
+          src="/assets/vectors/logo.svg"
           alt="LOGO"
-          className={cn(className)}
+          className={cn("h-3", className)}
         />
       </div>
     );
   }
 
   return (
-    <div ref={ref ? ref : null}>
-      <img
-        src="/assets/icons/logo-text.svg"
-        alt="LOGO TEXT"
-        className={cn(className)}
-      />
+    <div>
+      <div className="flex justify-start items-center gap-1">
+        <img
+          src="/assets/vectors/logo.svg"
+          alt="LOGO"
+          className={cn("size-5", className)}
+        />
+        <span className="text-app-primary-dark font-medium tracking-tighter text-xl md:text-2xl font-dm-mono">
+          Nxtgen
+        </span>
+      </div>
     </div>
   );
 };
