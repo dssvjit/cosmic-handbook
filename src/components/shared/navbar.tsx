@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 const Navbar = () => {
   return (
     <nav
-      className="w-full sticky top-0 z-50 h-[55px] flex justify-between items-center bg-none backdrop-blur-md border-b border-app-border-dark
+      className="w-full sticky top-0 z-50 h-[55px] flex justify-between items-center bg-none backdrop-blur-lg border-b border-app-border-dark
      px-7"
     >
       <Link to="/">

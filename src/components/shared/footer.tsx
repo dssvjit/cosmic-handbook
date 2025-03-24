@@ -101,7 +101,7 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row w-full items-center justify-between gap-10 p-7 md:p-10">
         <div className="flex flex-col w-full md:w-1/2 justify-start items-start gap-3">
           <div className="flex justify-start items-center gap-2">
-            <Logo className="size-8" />
+            <Logo imgClassName="size-8" />
             <span className="text-3xl md:text-4xl text-app-primary-dark">
               Nxtgen
             </span>

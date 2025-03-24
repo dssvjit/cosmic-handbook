@@ -1,0 +1,47 @@
+# Getting Started with Hono
+
+## Introduction & Why Hono?
+
+Hono is a lightweight, fast, and edge-optimized web framework for JavaScript and TypeScript. It is designed for **high performance** and is particularly well-suited for **serverless environments** like Cloudflare Workers, Deno, and Bun.
+
+### Why Choose Hono Over Express?
+
+Hono offers a **faster and more optimized** approach to handling HTTP requests compared to Express. It is particularly useful for modern **edge computing** environments.
+
+## Installation & Setup
+
+To start using Hono, you first need to install it via npm:
+
+### Install Hono via npm:
+
+```sh
+npm install hono
+```
+
+### Now, let's create a simple server using Hono
+
+This basic setup initializes a new Hono application and defines a single route (/) that returns "Hello, Hono!". The c parameter represents the context object, which allows you to handle requests and responses efficiently.
+
+```ts
+import { Hono } from "hono";
+
+const app = new Hono();
+
+app.get("/", (c) => c.text("Hello, Hono!"));
+
+export default app;
+```
+
+### Key Differences Between Hono & Express
+
+Hono is often compared with Express, as both are used to build web applications and APIs. However, there are key differences:
+
+| Feature     | Hono                        | Express                      |
+| ----------- | --------------------------- | ---------------------------- |
+| Performance | Extremely fast (~2x faster) | Moderate                     |
+| Middleware  | Uses a simple chain model   | Uses _**next()**_ function   |
+| Edge Ready  | Yes (Cloudflare, Deno, Bun) | No                           |
+| Type Safety | First-class TypeScript      | Requires extra configuration |
+| Routing     | Similar to Express          | Traditional Express routes   |
+
+Hono is ideal for serverless APIs and edge deployments, whereas Express is better suited for traditional server-based applications.
