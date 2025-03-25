@@ -16,23 +16,20 @@ export const CustomH2 = (props: ComponentPropsWithoutRef<"h2">) => (
 
 export const CustomH3 = (props: ComponentPropsWithoutRef<"h3">) => (
   <h3
-    className="text-lg lg:text-xl font-semibold text-app-typo-h2-dark/80 mt-4"
+    className="text-lg lg:text-[1.4rem] font-semibold text-app-typo-h2-dark mt-4"
     {...props}
   />
 );
 
 export const CustomH4 = (props: ComponentPropsWithoutRef<"h3">) => (
   <h3
-    className="text-base lg:text-lg font-semibold text-app-typo-h2-dark py-1"
+    className="text-base lg:text-[1.2rem] font-semibold text-app-typo-h2-dark py-1"
     {...props}
   />
 );
 
 export const CustomParagraph = (props: ComponentPropsWithoutRef<"p">) => (
-  <p
-    className="text-sm lg:text-base text-app-typo-p-dark/40 tracking-tight py-1"
-    {...props}
-  />
+  <p className="text-sm lg:text-base text-app-typo-p-dark/80 py-1" {...props} />
 );
 
 export const CustomLink = (props: ComponentPropsWithoutRef<"a">) => (
@@ -81,7 +78,7 @@ export const CustomImg = (props: ComponentPropsWithoutRef<"img">) => (
 );
 
 export const CustomStrong = (props: ComponentPropsWithoutRef<"strong">) => (
-  <strong className="font-semibold text-app-typo-h2-dark/70" {...props} />
+  <strong className="font-semibold text-app-typo-h2-dark" {...props} />
 );
 
 export const CustomEm = (props: ComponentPropsWithoutRef<"em">) => (
@@ -105,14 +102,14 @@ export const CustomTr = (props: ComponentPropsWithoutRef<"tr">) => (
 
 export const CustomTd = (props: ComponentPropsWithoutRef<"td">) => (
   <td
-    className="p-3 text-left text-app-typo-p-dark border-app-border-dark"
+    className="p-3 text-xs md:text-sm text-left text-app-typo-p-dark border-app-border-dark"
     {...props}
   />
 );
 
 export const CustomTh = (props: ComponentPropsWithoutRef<"th">) => (
   <th
-    className="p-3 text-left font-semibold border-app-border-dark bg-app-border-dark/40"
+    className="p-3 text-xs md:text-sm text-left font-semibold border-app-border-dark bg-app-border-dark/40"
     {...props}
   />
 );

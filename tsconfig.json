@@ -4,12 +4,13 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+    "outDir": "./dist",
     "jsx": "react-jsx",
     "composite": true,
     "skipLibCheck": true,
     "strict": true
   },
-  "include": ["src", "src/**/*.mdx"],
+  "include": ["src", "src/**/*.mdx", "src/**/*.svg"],
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
