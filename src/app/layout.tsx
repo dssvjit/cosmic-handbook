@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "@/app/pages/home.page";
 import NotFoundPage from "@/app/pages/not-found.page";
 import HandBookPage from "@/app/pages/handbook.page";
+import MarkdownHandbook from "@/components/handbook/markdown.handbook";
 
 function App() {
   return (
@@ -10,7 +11,9 @@ function App() {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="/handbook" element={<HandBookPage />} />
+          <Route path="/handbook" element={<HandBookPage />}>
+            <Route path="/handbook/:name" element={<MarkdownHandbook />} />
+          </Route>
         </Routes>
       </div>
     </section>

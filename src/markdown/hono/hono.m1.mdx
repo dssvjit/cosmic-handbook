@@ -45,3 +45,35 @@ Hono is often compared with Express, as both are used to build web applications 
 | Routing     | Similar to Express          | Traditional Express routes   |
 
 Hono is ideal for serverless APIs and edge deployments, whereas Express is better suited for traditional server-based applications.
+
+### Running the App in Node.js
+
+If you want to run Hono on Node.js, use a compatible server like Vercel or @hono/node-server:
+
+```sh
+npm install @hono/node-server
+```
+
+Then create a server file:
+
+```ts
+import { Hono } from "hono";
+import { serve } from "@hono/node-server";
+
+const app = new Hono();
+
+app.get("/", (c) => c.text("Hello, Hono!"));
+
+serve(app, (info) => {
+  console.log(`Server running at http://localhost:${info.port}`);
+});
+```
+
+Run it using:
+
+```sh
+node server.js
+
+```
+
+This guide should help you get started with Hono!
