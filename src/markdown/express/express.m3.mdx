@@ -1,0 +1,71 @@
+# Express Routing Guide
+
+Routing in Express.js is flexible and powerful, allowing developers to define routes using various HTTP methods. It supports:
+
+### Basic Routing
+
+Example:
+
+```js
+import express from "express";
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello, Express!");
+});
+
+export default app;
+```
+
+Here, the '/' route responds with "Hello, Express!".
+
+### Dynamic & Named Parameters
+
+You can define dynamic routes using **:paramName**.
+
+```js
+app.get("/user/:id", (req, res) => {
+  const userId = req.params.id;
+  res.send(`User ID: ${userId}`);
+});
+```
+
+When a request is made to "/user/42", it responds with "User ID: 42".
+
+### Nested Routes
+
+For better structuring, you can organize routes using **express.Router()**.
+
+```js
+const userRouter = express.Router();
+
+userRouter.get("/", (req, res) => res.send("User List"));
+userRouter.get("/:id", (req, res) => res.send(`User ID: ${req.params.id}`));
+
+app.use("/user", userRouter);
+```
+
+Now, the following routes work:
+
+- **GET /user** → Returns "User List"
+- **GET /user/123** → Returns "User ID: 123"
+
+### Wildcard Routes
+
+Use `*` to match any path after a certain prefix.
+
+```js
+app.get("/docs/*", (req, res) => {
+  res.send("Docs Page");
+});
+```
+
+Examples:
+
+- **/docs/setup** → Matches
+- **/docs/api/intro** → Matches
+
+### Conclusion
+
+Express's routing system is simple yet powerful, supporting nested routes, parameters, wildcards, and middleware. You can now organize your API efficiently!

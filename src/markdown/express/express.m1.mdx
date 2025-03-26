@@ -1,0 +1,74 @@
+# Getting Started with Express
+
+## Introduction & Why Express?
+
+Express is a fast, unopinionated, and minimalist web framework for Node.js. It is widely used for building web applications and APIs due to its simplicity and flexibility.
+
+### Why Choose Express?
+
+Express provides a robust set of features to develop web and mobile applications. It is lightweight, easy to use, and has a large ecosystem of middleware to extend its functionality.
+
+## Installation & Setup
+
+To start using Express, you first need to install it via npm:
+
+### Install Express via npm in your terminal:
+
+```sh
+npm install express
+```
+
+### Importing the package
+
+The latest ES version ES15 uses **import** instead of **require**. To do this:
+Change the setting in your package.json.
+
+```json
+"type": "module"
+```
+
+### Now, let's create a simple server using Express
+
+This basic setup initializes an Express application and defines a single route (/) that returns "Hello, Express!".
+
+### Creating a basic Express Server
+
+First create a file named **server.js** or any other filename with **.js** as the extension.
+Write the following code:
+
+```js
+import express from "express";
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello, Express!");
+});
+
+app.listen(3000, () => {
+  console.log("Server running at http://localhost:3000");
+});
+```
+
+### Running the App in Node.js
+
+To run the Express application, simply use Node.js:
+
+```sh
+node server.js
+```
+
+### Key Differences Between Express & Hono
+
+Express is often compared with newer frameworks like Hono. Here are some key differences:
+
+| Feature     | Express                      | Hono                        |
+| ----------- | ---------------------------- | --------------------------- |
+| Performance | Moderate                     | Extremely fast (~2x faster) |
+| Middleware  | Uses _**next()**_ function   | Uses a simple chain model   |
+| Edge Ready  | No                           | Yes (Cloudflare, Deno, Bun) |
+| Type Safety | Requires extra configuration | First-class TypeScript      |
+| Routing     | Traditional Express routes   | Similar to Express          |
+
+Express is ideal for traditional server-based applications, whereas Hono is optimized for serverless and edge deployments.
+This guide should help you get started with Express!

@@ -2,7 +2,7 @@ import MDXProviderWrapper from "@/components/mdx/mdx.provider";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import MD from "@/markdown/hono/hono.m1.mdx";
+import MD from "@/markdown/express/express.m6.mdx";
 
 const MarkdownHandbook = () => {
   const { pathname } = useLocation();

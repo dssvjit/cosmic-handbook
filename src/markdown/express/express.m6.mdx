@@ -1,0 +1,112 @@
+# TypeScript Initialization in Express.js
+
+## Introduction
+
+Setting up TypeScript with Express.js provides **type safety, better code organization, and improved developer experience**. This guide will walk you through installing and configuring TypeScript in an Express.js project.
+By deafult javascript does not provide data type for each variable and this can sometimes cause problem. To solve this, typescript is used.
+
+## Step 1: Initialize a New Project
+
+Create a new directory and initialize a Node.js project.
+
+```sh
+mkdir expressApp && cd expressApp
+```
+
+```
+npm init -y
+```
+
+This generates a package.json file to manage dependencies.
+
+## Step 2: Install Required Dependencies
+
+Install Express.js and TypeScript along with necessary type definitions.
+
+```sh
+npm install express
+```
+
+```
+npm install --save-dev typescript @types/express ts-node nodemon
+```
+
+typescript → TypeScript compiler
+
+@types/express → Type definitions for Express.js
+
+ts-node → Run TypeScript files directly
+
+nodemon → Auto-restart the server on file changes
+
+## Step 3: Configure TypeScript
+
+Generate a tsconfig.json file:
+
+```sh
+npx tsc --init
+```
+
+Modify tsconfig.json to ensure compatibility with Express.js:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "CommonJS",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true
+  }
+}
+```
+
+target: "ES6" → Enables modern JavaScript features
+
+module: "CommonJS" → Required for Node.js
+
+rootDir: "./src" → TypeScript source files directory
+
+outDir: "./dist" → Compiled JavaScript output directory
+
+strict: true → Enforces strict type checking
+
+esModuleInterop: true → Enables ES module compatibility
+
+## Step 4: Update package.json Scripts
+
+Modify `package.json` to streamline development:
+
+````json
+"scripts": {
+  "start": "node dist/server.js",
+  "build": "tsc",
+  "dev": "nodemon src/server.ts"
+}
+start → Runs the compiled JavaScript file
+
+build → Compiles TypeScript into JavaScript
+
+dev → Runs the project in development mode using nodemon
+
+## Step 5: Create an Express Server
+
+Inside the project, create a src folder and add a server.ts file:
+
+```ts
+import express, { Request, Response } from "express";
+
+const app = express();
+const PORT = 3000;
+
+app.get("/", (req: Request, res: Response) => {
+  res.send("Hello, TypeScript with Express!");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
+````
+
+## Step 6: Run the server
