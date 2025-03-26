@@ -1,0 +1,136 @@
+# Express Request (req) and Response (res) Guide
+
+## Introduction
+
+In Express, req (request) and res (response) are the two main objects used in route handlers. They allow handling incoming client requests and sending responses back. Understanding their properties and methods is crucial for both beginners and professionals.
+
+## Request (req)
+
+### 1. req.params
+
+Used to retrieve route parameters.
+
+```js
+app.get("/user/:id", (req, res) => {
+  res.send(`User ID: ${req.params.id}`);
+});
+```
+
+**Explanation:** If a request is made to /user/42, req.params.id will be 42.
+
+### 2. req.query
+
+Used to access query parameters from the URL.
+
+```js
+app.get("/search", (req, res) => {
+  res.send(`Search query: ${req.query.q}`);
+});
+```
+
+**Explanation:** If a request is made to /search?q=express, req.query.q will be "express".
+
+### 3. req.body
+
+Used to retrieve data sent in the request body (requires middleware like express.json()).
+
+```js
+app.use(express.json());
+app.post("/user", (req, res) => {
+  res.send(`User created with name: ${req.body.name}`);
+});
+```
+
+**Explanation:** If the below JSON request is sent, req.body.name will be "John".
+`{"name":"John"}`
+
+### 4. req.headers
+
+Used to access HTTP headers.
+
+```js
+app.get("/headers", (req, res) => {
+  res.send(`User-Agent: ${req.headers["user-agent"]}`);
+});
+```
+
+**Explanation:** Retrieves theUser-Agent header from the request.
+
+### 5. req.method
+
+Returns the HTTP method of the request.
+
+```js
+app.use((req, res, next) => {
+  console.log(`HTTP Method: ${req.method}`);
+  next();
+});
+```
+
+**Explanation:** Logs whether the request is GET, POST, etc.
+
+## Response (res)
+
+### 1. res.send()
+
+Sends a plain text or JSON response.
+
+```js
+app.get("/welcome", (req, res) => {
+  res.send("Welcome to Express!");
+});
+```
+
+**Explanation:** Sends a simple text response.
+
+### 2. res.json()
+
+Sends a JSON response.
+
+```js
+app.get("/data", (req, res) => {
+  res.json({ message: "Hello, World!" });
+});
+```
+
+**Explanation:** Sends a JSON object as a response.
+
+### 3. res.status()
+
+Sets the HTTP status code.
+
+```js
+app.get("/not-found", (req, res) => {
+  res.status(404).send("Page Not Found");
+});
+```
+
+**Explanation:** Sends a 404 Not Found status with a message.
+
+### 4. res.redirect()
+
+Redirects the client to another URL.
+
+```js
+app.get("/old-route", (req, res) => {
+  res.redirect("/new-route");
+});
+```
+
+**Explanation:** Redirects /old-route to /new-route.
+
+### 5. res.sendFile()
+
+Sends a file as a response.
+
+```js
+app.get("/file", (req, res) => {
+  res.sendFile(__dirname + "/example.pdf");
+});
+```
+
+**Explanation:** Serves a file (example.pdf) for download.
+
+## Conclusion
+
+Understanding req and res is essential for handling client requests and responses effectively. Mastering their methods allows for powerful Express applications, from handling user input to sending dynamic responses.
