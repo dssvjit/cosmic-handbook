@@ -1,0 +1,87 @@
+# CSS Grid & Responsive Design
+
+## Introduction to CSS Grid
+
+CSS Grid Layout is a powerful system for creating complex layouts with rows and columns. It provides more flexibility than Flexbox when designing structured layouts.
+
+## Basic Grid Terminology
+
+1. Grid Container : The parent element with display: grid;.
+2. Grid Items : The direct children of the grid container.
+3. Rows & Columns : Defined using grid-template-rows and grid-template-columns.
+4. Gap : Space between grid items (gap property).
+
+## Creating a Simple CSS Grid
+
+```css
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    background-color: lightgray;
+    padding: 10px;
+}
+
+.item {
+    background-color: darkblue;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+```
+
+- display: grid; enables Grid layout.
+- grid-template-columns: repeat(2, 1fr); creates two equal columns.
+- gap: 10px; adds spacing between grid items.
+
+## Responsive Design with CSS
+
+Responsive design ensures web pages look good on all devices (desktop, tablet, mobile). This is achieved using media queries and relative units.
+
+#### Key Techniques
+
+1. Flexbox & Grid : Create flexible layouts.
+2. Relative Units : Use %, vh, vw, em, or rem instead of fixed px.
+3. Media Queries : Apply styles based on screen width.
+
+## Using Media Queries for Responsiveness
+
+Media queries adjust styles based on screen size.
+
+##### Example:
+
+```css
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* Change to single column on small screens */
+    }
+}
+```
+
+##### Example: Responsive Navigation Bar
+
+```css
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    background-color: darkblue;
+    padding: 10px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive Navbar */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+```
+
+## Conclusion
+
+CSS Grid provides a powerful way to create layouts with rows and columns. Responsive Design ensures the website adapts to different screen sizes. Media Queries help create mobile-friendly websites.

@@ -1,0 +1,81 @@
+# CSS Selectors & Properties
+
+## What are CSS Selectors?
+
+CSS selectors are patterns used to target HTML elements for styling. They allow developers to apply styles to specific elements, groups, or elements with particular attributes.
+
+## Common CSS Selectors
+
+### Element Selector :
+
+Targets all elements of a specific type.Applies to all <p> elements.
+
+```css
+p {
+    color: blue;
+    font-size: 18px;
+}
+```
+
+### Class Selector (.)
+
+Targets elements with a specific class. Allows reuse across multiple elements.
+
+```css
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
+```
+
+### ID Selector (#)
+
+Targets a unique element with a specific ID. Should be unique per page.
+
+```css
+#header {
+    color: white;
+    background-color: black;
+    padding: 10px;
+}
+```
+
+### Group Selector (``, )
+
+Applies styles to multiple elements. Avoids repetition in CSS.
+
+```css
+h1, h2, h3 {
+    color: darkblue;
+    text-align: center;
+}
+```
+
+### Descendant Selector
+
+Targets elements inside a specific container. Useful for structuring styles based on hierarchy.
+
+```css
+div p {
+    color: green;
+}
+```
+
+## Understanding CSS Properties
+
+CSS properties define how elements look. Each property has a value to determine its effect.
+
+| Property         | Description                     | Example                         |
+| ---------------- | ------------------------------- | ------------------------------- |
+| color            | Changes text color              | color: red;                     |
+| background-color | Sets background color           | background-color: yellow;       |
+| font-size        | Controls text size              | font-size: 20px;                |
+| font-family      | Controls text font              | font-family: Arial, sans-serif; |
+| margin           | Adds space outside an element   | margin: 10px;                   |
+| padding          | Adds space inside an element    | padding: 5px;                   |
+| border           | Adds a border around an element | border: 2px solid black;        |
+
+## Conclusion
+
+- Selectors target specific HTML elements.
+- CSS properties control colors, fonts, spacing, and more.

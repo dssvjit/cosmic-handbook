@@ -1,0 +1,82 @@
+# CSS Animations & Transitions
+
+## Introduction to CSS Animations & Transitions
+
+CSS provides powerful tools to create smooth visual effects using animations and transitions. These effects enhance user experience by making web pages more interactive.
+
+1. Transitions : Gradually change CSS properties over time.
+2. Animations : Create complex motion effects using keyframes.
+
+## CSS Transitions
+
+A transition allows CSS properties (e.g., color, size, position) to change smoothly instead of instantly.
+
+##### Example
+
+```css
+.button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.button:hover {
+    background-color: red;
+}
+```
+
+## CSS Animations
+
+Animations allow elements to move, change colors, or transform over time using @keyframes.
+
+### Properties
+
+| Property                  | Description                    | Example     |
+| ------------------------- | ------------------------------ | ----------- |
+| animation-name            | Defines the animation          | moveBox     |
+| animation-duration        | Duration of animation          | 2s          |
+| animation-timing-function | Controls speed variation       | ease-in-out |
+| animation-delay           | Delay before animation starts  | 1s          |
+| animation-iteration-count | Number of times animation runs | infinite    |
+| animation-direction       | Direction of animation         | alternate   |
+
+##### Example
+
+```css
+@keyframes moveBox {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(100px); }
+    100% { transform: translateX(0); }
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    animation: moveBox 2s infinite;
+}
+```
+
+## Combining Transitions & Animations
+
+```css
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-50px); }
+}
+
+.ball {
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    border-radius: 50%;
+    animation: bounce 1s infinite;
+}
+```
+
+## Conclusion
+
+Transitions make UI interactions smoother. Animations add dynamic motion effects. 
