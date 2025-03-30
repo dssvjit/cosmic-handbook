@@ -1,0 +1,56 @@
+# HTTP Methods
+
+Express uses **.get()**, **.post()**, **.put()**, **.delete()**, and other HTTP methods to define routes.
+Express supports various HTTP methods for handling client requests. Each method serves a specific purpose.
+
+## Understanding req and res
+
+In Express.js, req (request) and res (response) are objects provided by Express to handle HTTP requests and responses.
+
+- **req (Request Object)**: Contains information about the incoming request, such as parameters, query strings, headers, and body data using **req.query**, **req.params** and many more.
+- **res (Response Object)**: Provides methods to send a response back to the client, such as **res.send()**, **res.json()**, or **res.status()**.
+
+Example:
+
+### 1. GET Method
+
+Used to **retrieve data** from the server.
+Does not modify server data.
+
+```js
+app.get("/users", (req, res) => {
+  res.send("Fetching all users");
+});
+```
+
+### 2. POST Method
+
+Used to **send data** to the server to create new resources.
+Data is sent in the request body.
+
+```js
+app.post("/users", (req, res) => {
+  res.send("User added successfully");
+});
+```
+
+### 3. PUT Method
+
+Used to **update an existing resource completely**.
+Requires the full resource data in the request body.
+
+```js
+app.put("/users/:id", (req, res) => {
+  res.send(`User with ID ${req.params.id} updated`);
+});
+```
+
+### 4. DELETE Method
+
+Used to **remove a resource** from the server.
+
+```js
+app.delete("/users/:id", (req, res) => {
+  res.send(`User with ID ${req.params.id} deleted`);
+});
+```

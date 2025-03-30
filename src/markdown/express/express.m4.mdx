@@ -1,0 +1,127 @@
+# Express Middleware Guide
+
+### Introduction
+
+Middleware in Express allows you to process requests before they reach the route handler. It’s commonly used for:
+
+- Logging
+- Authentication & Authorization
+- Request Parsing
+- Error Handling
+
+### Creating Custom Middleware
+
+A middleware function takes **req**, **res**, and **next()**.
+
+```js
+app.use((req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url}`);
+  next(); // Pass control to the next middleware/handler
+});
+```
+
+This logs every request before passing it to the route.
+
+### Adding CORS Middleware
+
+For handling Cross-Origin Resource Sharing (CORS):
+
+```js
+import cors from "cors";
+app.use(cors());
+```
+
+This allows requests from any origin.
+
+```js
+app.use(cors({ origin: "https://example.com" }));
+```
+
+To allow specific origins.
+
+### Authentication Middleware
+
+A JWT-based auth middleware example:
+
+```js
+import jwt from "jsonwebtoken";
+
+const authMiddleware = (req, res, next) => {
+  const token = req.headers.authorization;
+  if (!token) return res.status(401).send("Access Denied");
+
+  try {
+    const verified = jwt.verify(token, "your-secret-key");
+    req.user = verified;
+    next();
+  } catch (err) {
+    res.status(400).send("Invalid Token");
+  }
+};
+
+app.use("/dashboard", authMiddleware);
+app.get("/dashboard", (req, res) => res.send("You are authenticated!"));
+```
+
+This protects **/dashboard** routes using JWT authentication.
+If the token is invalid or missing, it blocks access.
+
+### Role-Based Authorization Middleware
+
+Extend authentication with role-based access:
+
+```js
+const adminMiddleware = (req, res, next) => {
+  if (req.user?.role !== "admin") {
+    return res.status(403).send("Forbidden");
+  }
+  next();
+};
+
+app.get("/admin", authMiddleware, adminMiddleware, (req, res) => {
+  res.send("Welcome, Admin!");
+});
+```
+
+Only users with role: **"admin"** can access **/admin**.
+
+### Global vs. Route-Level Middleware
+
+#### Global Middleware: Affects all routes.
+
+```js
+app.use((req, res, next) => {
+  console.log("Global Middleware Active");
+  next();
+});
+```
+
+#### Route-Level Middleware: Affects specific routes only.
+
+```js
+app.get("/secure", authMiddleware, (req, res) => res.send("Secure Data"));
+```
+
+### Route Groups & Middleware
+
+Group routes together and apply middleware at a higher level.
+
+```js
+const apiRouter = express.Router();
+
+apiRouter.get("/products", (req, res) =>
+  res.json({ products: ["Laptop", "Phone"] })
+);
+apiRouter.get("/orders", (req, res) => res.json({ orders: [123, 456] }));
+
+app.use("/api", apiRouter);
+```
+
+Now:
+
+- **/api/products** → Returns a JSON list of products
+- **/api/orders** → Returns a JSON list of orders
+
+### Conclusion
+
+Middleware in Express is powerful and flexible, making it easy to handle authentication, logging, and security.
