@@ -1,0 +1,74 @@
+# CSS Box Model & layouts
+
+## What is the CSS Box Model?
+
+The CSS Box Model defines how elements are displayed and spaced in a web page. Every element is treated as a box with the following properties:
+ 
+1. Content : The actual text or image inside the element.
+2. Padding : Space between content and the border.
+3. Border : The outline surrounding the element.
+4. Margin : Space outside the border, separating it from other elements.
+
+## Understanding the Box Model
+
+| Property | Description                 | Example Value   |
+| -------- | --------------------------- | --------------- |
+| width    | Sets the content width      | 200px           |
+| height   | Sets the content height     | 100px           |
+| border   | The visible edge of element | 5px solid black |
+| padding  | Space inside the element    | 20px            |
+| margin   | Space outside the element   | 15px            |
+
+##### Example
+
+```css
+.box {
+    width: 250px;
+    height: 120px;
+    padding: 20px;
+    border: 3px solid blue;
+    margin: 10px auto;
+    background-color: lightgray;
+    text-align: center;
+}
+```
+
+## CSS Layout Techniques
+
+### Block vs Inline Elements
+
+- Block elements (e.g., `<div>`, `<p>`, `<h1>`): Take up full width.
+- Inline elements (e.g., `<span>`, `<a>`): Only take up space needed.
+
+### Positioning Elements
+
+CSS provides different ways to position elements on a page:
+
+- static : Default positioning, follows document flow.
+- relative : Moves the element relative to its normal position.
+- absolute : Positions the element relative to its nearest positioned ancestor.
+- fixed : Sticks to the viewport.
+- sticky : Scrolls until it reaches a threshold, then stays fixed.
+
+## CSS Flexbox – Modern Layout System
+
+Flexbox makes it easy to align and distribute space among items in a container.
+
+```css
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box {
+    width: 100px;
+    height: 50px;
+    background-color: lightblue;
+    text-align: center;
+    padding: 10px;
+}
+```
+
+## Conclusion
+
+The Box Model controls spacing, padding, borders, and margins. Positioning defines how elements appear on the page. Positioning defines how elements appear on the page.
