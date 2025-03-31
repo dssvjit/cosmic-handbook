@@ -1,0 +1,107 @@
+# CRUD Operations with Prisma Client
+
+The Prisma Client provides an intuitive API for performing CRUD (Create, Read, Update, Delete) operations.
+
+## Creating Data
+
+```ts
+const user = await prisma.user.create({
+  data: {
+    name: "Alice",
+    email: "alice@example.com",
+  },
+});
+```
+
+You can also create multiple records at once using **createMany**:
+
+```ts
+const users = await prisma.user.createMany({
+  data: [
+    { name: "Bob", email: "bob@example.com" },
+    { name: "Charlie", email: "charlie@example.com" },
+  ],
+});
+```
+
+## Reading Data
+
+```ts
+const users = await prisma.user.findMany();
+```
+
+Filtering and sorting results:
+
+```ts
+const user = await prisma.user.findUnique({
+  where: { email: "alice@example.com" },
+});
+```
+
+```ts
+const sortedUsers = await prisma.user.findMany({
+  orderBy: { name: "asc" },
+});
+```
+
+## Updating Data
+
+```ts
+const updatedUser = await prisma.user.update({
+  where: { email: "alice@example.com" },
+  data: { name: "Alice Cooper" },
+});
+```
+
+Updating multiple records:
+
+```ts
+const updatedUsers = await prisma.user.updateMany({
+  where: { name: "Bob" },
+  data: { name: "Robert" },
+});
+```
+
+## Deleting Data
+
+```ts
+const deletedUser = await prisma.user.delete({
+  where: { email: "alice@example.com" },
+});
+```
+
+Deleting multiple records:
+
+```ts
+const deletedUsers = await prisma.user.deleteMany({
+  where: { name: "Charlie" },
+});
+```
+
+## Querying using certain keywords
+
+### Using select
+
+- The select option allows you to retrieve only specific fields from a model.
+
+```ts
+const user = await prisma.user.findUnique({
+  where: { email: "alice@example.com" },
+  select: { name: true, email: true },
+});
+```
+
+### Using include
+
+- The include option lets you fetch related data along with the main query.
+
+```ts
+const userWithPosts = await prisma.user.findUnique({
+  where: { email: "alice@example.com" },
+  include: { posts: true },
+});
+```
+
+## Conclusion
+
+Prisma Client allows easy execution of CRUD operations for effective database management, including batch operations, filtering, sorting, and updating multiple records efficiently.

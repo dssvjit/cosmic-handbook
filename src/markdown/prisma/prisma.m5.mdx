@@ -1,0 +1,117 @@
+# Advanced Queries & Performance Optimization in Prisma
+
+### Filtering Data
+
+Prisma provides powerful filtering options using the **where** clause.
+
+#### Basic Filtering
+
+```ts
+const users = await prisma.user.findMany({
+  where: {
+    age: { gte: 18 }, // Fetch users aged 18 or older
+  },
+});
+```
+
+#### Complex Filtering (AND, OR, NOT)
+
+```ts
+const users = await prisma.user.findMany({
+  where: {
+    AND: [{ age: { gte: 18 } }, { isActive: true }],
+  },
+});
+```
+
+```ts
+const users = await prisma.user.findMany({
+  where: {
+    OR: [
+      { email: { endsWith: "@example.com" } },
+      { name: { contains: "John" } },
+    ],
+  },
+});
+```
+
+### Pagination
+
+Efficient pagination ensures optimal database queries.
+
+#### Offset-based Pagination
+
+```ts
+const users = await prisma.user.findMany({
+  skip: 10,
+  take: 5, // Fetch 5 users after skipping the first 10
+});
+```
+
+#### Cursor-based Pagination (More Efficient)
+
+```ts
+const users = await prisma.user.findMany({
+  take: 5,
+  cursor: { id: lastUserId }, // Fetch users after a specific ID
+  orderBy: { id: "asc" },
+});
+```
+
+### Query Optimizations
+
+#### Selecting Only Required Fields
+
+```ts
+const users = await prisma.user.findMany({
+  select: {
+    id: true,
+    name: true,
+  },
+});
+```
+
+#### Using **include** to Optimize Relations
+
+```ts
+const users = await prisma.user.findMany({
+  include: { posts: true },
+});
+```
+
+#### Using **batch** Queries to Reduce Database Calls
+
+```ts
+const [users, posts] = await prisma.$transaction([
+  prisma.user.findMany(),
+  prisma.post.findMany(),
+]);
+```
+
+### Executing Raw SQL for Advanced Queries
+
+If Prisma's API doesn't support a specific query, raw SQL can be used.
+
+#### Raw SQL Query
+
+```ts
+const result =
+  await prisma.$queryRaw`SELECT * FROM "User" WHERE "isActive" = true`;
+```
+
+#### Parameterized Raw Query (to prevent SQL injection)
+
+```ts
+const result =
+  await prisma.$queryRaw`SELECT * FROM "User" WHERE "email" = ${email}`;
+```
+
+### Best Practices for Performance Optimization
+
+- **Use Cursor-based Pagination** instead of offset for large datasets.
+- **Select only necessary fields** to reduce data load.
+- **Batch queries using transactions** to minimize database requests.
+- **Use indexing** in the database for frequently queried fields.
+- **Use raw queries cautiously** to optimize complex queries.
+
+By implementing these strategies, Prisma queries can be highly efficient, scalable, and optimized for performance.

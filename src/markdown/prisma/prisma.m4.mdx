@@ -1,0 +1,47 @@
+## Database Migrations with Prisma Migrate
+
+Prisma Migrate is a powerful tool for managing database schema changes and versioning. It ensures that database schema updates are tracked and applied in a structured way.
+
+### Creating a Migration
+
+After modifying the schema, run the following command to create a new migration:
+
+```sh
+npx prisma migrate dev --name migration_name
+```
+
+Provide a meaningful `migration_name` to describe the changes made.
+
+### Applying Migrations
+
+To apply pending migrations in a production environment, use:
+
+```sh
+npx prisma migrate deploy
+```
+
+This ensures all migrations are executed in order.
+
+### Rolling Back Migrations
+
+During development, you can reset the database and reapply all migrations using:
+
+```sh
+npx prisma migrate reset
+```
+
+This will delete all data and recreate the schema.
+
+### Checking Migration Status
+
+To check which migrations have been applied and their status, run:
+
+```sh
+npx prisma migrate status
+```
+
+### Best Practices for Migrations
+
+- Always review schema changes before running migrations.
+- Use meaningful migration names for better tracking.
+- In production, test migrations in a staging environment before deploying.
