@@ -1,0 +1,61 @@
+# Getting Started with Prisma
+
+## Introduction
+
+Prisma is a modern database toolkit for Node.js and TypeScript. It provides an intuitive API for working with databases and simplifies complex database operations.
+
+## Installing Prisma
+
+To start using Prisma, you first need to install it along with the Prisma CLI. This allows you to initialize a new Prisma project and interact with your database.
+
+### Install Prisma via npm:
+
+Run the following command in your terminal to install Prisma:
+
+```sh
+npm install @prisma/client prisma --save-dev
+```
+
+### Initializing a Prisma Project
+
+After installing Prisma, initialize a new Prisma project by running:
+
+```sh
+npx prisma init
+```
+
+This will create a **prisma/** directory with a **schema.prisma** file, where you define your database models and configuration.
+
+## Setting up the Database
+
+Prisma supports multiple databases, including PostgreSQL, MySQL, and SQLite. You need to configure your database connection in the **.env** file.
+
+### Example Database Connection (PostgreSQL)
+
+Open the **.env** file and update the 'DATABASE_URL' variable:
+
+```sh
+DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/mydatabase?schema=public"
+```
+
+Replace 'USER', 'PASSWORD', and 'mydatabase' with your actual database credentials.
+
+### Applying Database Migrations
+
+After defining your database models in **schema.prisma**, apply the changes to your database using Prisma Migrate:
+
+```sh
+npx prisma migrate dev --name init
+```
+
+This will create the necessary database tables based on your schema.
+
+### Generating Prisma Client
+
+After modifying your schema, run the following command to generate the Prisma Client:
+
+```sh
+npx prisma generate
+```
+
+With these steps, you have successfully set up Prisma, configured your database!

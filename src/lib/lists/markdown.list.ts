@@ -1,5 +1,6 @@
 import HonoMD from "@/markdown/hono/index.hono";
 import ExpressMD from "@/markdown/express/index.express";
+import PrismaMD from "@/markdown/prisma/index.prisma";
 
 export const MARKDOWN_LIST = [
   {
@@ -113,6 +114,48 @@ export const MARKDOWN_LIST = [
         title: "Express TypeScript Initialization",
         href: "express-typescript-initialization",
         markdown: ExpressMD.ExpressM6,
+      },
+    ],
+  },
+  {
+    id: 4,
+    topic: "Prisma",
+    subtopic: [
+      {
+        id: 1,
+        title: "Get started with Prisma",
+        href: "get-started-with-prisma",
+        markdown: PrismaMD.PrismaM1,
+      },
+      {
+        id: 2,
+        title: "Defining Prisma Schema",
+        href: "defining-prisma-schema",
+        markdown: PrismaMD.PrismaM2,
+      },
+      {
+        id: 3,
+        title: "Crud Operations with Prisma",
+        href: "crud-operations",
+        markdown: PrismaMD.PrismaM3,
+      },
+      {
+        id: 4,
+        title: "Database Migrations with Prisma",
+        href: "database-migrations-with-prisma",
+        markdown: PrismaMD.PrismaM4,
+      },
+      {
+        id: 5,
+        title: "Advance Querying with Prisma",
+        href: "advance-querying-with-prisma",
+        markdown: PrismaMD.PrismaM5,
+      },
+      {
+        id: 6,
+        title: "TypeScript Initialization with Prisma",
+        href: "typescript-initialization-with-prisma",
+        markdown: PrismaMD.PrismaM6,
       },
     ],
   },

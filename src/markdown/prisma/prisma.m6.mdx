@@ -1,0 +1,71 @@
+# Prisma Client with TypeScript Initialization
+
+## Introduction
+
+Prisma Client is a type-safe query builder for TypeScript, making database interactions easy and reliable.
+
+## Installation
+
+First, install Prisma and TypeScript dependencies:
+
+```sh
+npm install prisma @prisma/client
+npm install typescript ts-node @types/node --save-dev
+```
+
+## Setting Up Prisma
+
+Initialize Prisma in your project:
+
+```sh
+npx prisma init
+```
+
+This creates a **prisma/** directory with a **schema.prisma** file and a **.env** file for database settings.
+
+## Generating Prisma Client
+
+Run the following command to generate the Prisma Client:
+
+```sh
+npx prisma generate
+```
+
+## Using Prisma Client in TypeScript
+
+Create a **prisma.ts** file:
+
+```ts
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+export default prisma;
+```
+
+## Running a Sample Query
+
+Create an **index.ts** file and write:
+
+```ts
+import prisma from "./prisma";
+
+async function main() {
+  const users = await prisma.user.findMany();
+  console.log(users);
+}
+
+main().finally(() => prisma.$disconnect());
+```
+
+Run the script with:
+
+```sh
+npx ts-node index.ts
+```
+
+## Best Practices
+
+- Always run **prisma generate** after updating **schema.prisma**.
+- Use TypeScript's strict mode for better type safety.
+- Close Prisma Client properly when done.
+
+With these steps, you can quickly set up and use Prisma Client with TypeScript!

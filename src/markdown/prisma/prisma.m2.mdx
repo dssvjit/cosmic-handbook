@@ -1,0 +1,69 @@
+# Defining the Prisma Schema
+
+## Introduction
+
+The **schema.prisma** file is the foundation of a Prisma project. It defines the database structure using Prisma's schema language, enabling efficient data modeling and management.
+
+## Understanding Models
+
+Models in Prisma represent database tables. Each model is defined using the **model** keyword, where fields correspond to table columns.
+
+### Example Model:
+
+```sh
+model User {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String @unique
+  posts Post[]
+}
+```
+
+### Understanding Data Types
+
+Prisma provides various scalar types for defining fields:
+
+- **String** – Text data
+- **Int** – Integer numbers
+- **Float** – Decimal numbers
+- **Boolean** – True/False values
+- **DateTime** – Timestamp values
+- **Json** – JSON data
+
+Fields can also include attributes like **@id**, **@default**, **@unique**, and **@relation** to specify constraints and relationships.
+
+## Defining Relationships
+
+Prisma supports different types of relationships, including one-to-many and many-to-many, using relation fields and foreign keys.
+
+### One-to-Many Relationship:
+
+```sh
+model Post {
+  id      Int    @id @default(autoincrement())
+  title   String
+  content String
+  author  User   @relation(fields: [authorId], references: [id])
+  authorId Int
+}
+```
+
+### Many-to-Many Relationship:
+
+```sh
+model Student {
+  id     Int     @id @default(autoincrement())
+  name   String
+  courses Course[] @relation("Enrollment")
+}
+
+model Course {
+  id       Int      @id @default(autoincrement())
+  title    String
+  students Student[] @relation("Enrollment")
+}
+```
+
+## Conclusion
+
+By defining models, relationships, and data types in **schema.prisma**, Prisma simplifies database interactions and ensures consistency in your database schema. The schema acts as a blueprint, enabling seamless migrations and efficient queries.
