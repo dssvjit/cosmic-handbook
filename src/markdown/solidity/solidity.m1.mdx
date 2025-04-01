@@ -1,4 +1,3 @@
-# Solidity
 _Ethereum, the world Computer provides an enormously powerful shared global infrastructure to build a Decentralized application using a programming language called_ **_Solidity._**
 
 _Ethereum Solidity is a contract-oriented, high-level language with a syntax like that of JavaScript._
@@ -10,12 +9,12 @@ Before you begin, make sure you have the following tools installed:
 - **npm** (Node Package Manager, which is installed with Node.js)
 ### 2. **Install `solc` (Solidity Compiler)**:
 You can install the Solidity compiler (`solc`) as a Node.js package using npm:
-```
+```sh
 npm install solc
 ```
-### 3. Add code to javascript Project
+### 3. Add code to Javascript Project
 
-```
+```js
 const solc = require('solc');
 
 // Solidity source code
@@ -39,13 +38,13 @@ const compiled = solc.compile(source, 1);
 
 console.log(compiled);
 ```
-### 4. complie code
-```
+### 4. Complie code
+
+```sh
 node compiler.js
 ```
 ## There is another way ...
 The **Remix IDE**, if you don't want to set up a local environment, you can use **Remix IDE**, a web-based integrated development environment (IDE) for Solidity development.
-
 
 #### Steps:
 1. Open your browser and go to [Remix IDE](https://remix.ethereum.org/).
@@ -56,7 +55,7 @@ This is an ideal option for beginners as it's easy to use and doesn't require in
 A contract is the fundamental building block of Ethereum’s decentralized Applications. All variables and functions are part of a contract and this is the starting point of all the projects.
 ### My First Smart Contract
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.0;
@@ -73,7 +72,6 @@ contract Counter{
 - contract keyword is used to make a contract. There can my many contracts in a single `.sol` file.
 ## Data Types in Solidity
 There are 4 key data types in solidity:
-
 #### Boolean
 **_Keyword: Bool_**
 The possible values are constants i.e., **true** or **false**
@@ -81,7 +79,7 @@ The possible values are constants i.e., **true** or **false**
 **_Keyword:_ int/uint** (uint8 to uint256 in steps of 8 (unsigned of 8 up to 256 bits) and int8 to int256)
 Signed and unsigned integers of various sizes.
 **Example:**
-```
+```solidity
 contract MySample{  
 uint UnsignedInt =50;  
 }
@@ -92,7 +90,7 @@ _In the above statement, we have created a **uint** called **InsignedInt** &
 Holds a 20-byte value (size of an Ethereum address). Address types also have _members_ and serve as a base for all contracts.
 #### Members of Addresses: Balance & Transfer
 It is possible to query the balance of an address using the property **_balance_** and to send Ether to an address using the **_transfer_** function.
-```
+```solidity
 address x = 0x123;  
 address myAddress = this;  
 if  (x.balance < 10 && myAddress.balance > = 10)  
@@ -101,13 +99,11 @@ x.transfer(10);
 #### Strings
 **_Keyword:_ String** literals are written with either double or single-quotes **“foo”** or **‘bar’**.  
 Used for arbitrary-length UTF-data.
-```
+```solidity
 string language = "Solidity";
 ```
 ## Operators
 Operators in solidity are same as in JavaScript. Solidity has four types of operators:
-
-
 #### **Arithmetic Operators**
 Solidity has pretty straightforward Math operations. The following are similar to most of the programming languages:
 - Addition: `x + y
@@ -116,33 +112,31 @@ Solidity has pretty straightforward Math operations. The following are similar t
 - Division: `x / y`
 - Modulus / remainder: `x % y`
 Solidity also give you an option to use an exponential operator, here’s how:
-```
+```solidity
 uint x = 10 ** 3; // equal to 10^3 = 1000
 ```
 #### **Incremental Operators**
 Incremental operators in solidity:
-```
+```solidity
 a++, a–, ++a, –a, a+=1, a=a+1
 ```
 #### **Bitwise Operators:**
 Following are the operators:
-```
+```solidity
 (Bitwise OR) ‘|’, (Bitwise XOR), (Bitwise negation) ‘~’ , (Bitwise right shift) ‘>>’, (Bitwise left shift) ‘<<‘
 ```
 #### **Logical Operators:**
 
 Logical operators :
-```
+```solidity
 ! (logical negation), && (logical and), || (logical or), ==(equality), != (not equal)
 ```
 ## Data Structures in Solidity
-
-
 ### Structs
 Keyword: struct
 Solidity provides a way to define new types in the form of structs.
 _Structs allow you to create more complicated data types that have multiple properties._
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 contract ExampleContract {
@@ -156,7 +150,7 @@ contract ExampleContract {
 ```
 ### Arrays
 Arrays in Solidity can have a compile-time fixed size or they can be dynamic.
-```
+```solidity
 uint[3] fixed; //array of fixed length 3  
 uint[] dynamic; //a dynamic array has no fixed size, it can keep growing
 
@@ -166,11 +160,11 @@ Voter[] voting; //array of struct.
 
 Mapping is a data type which is similar to the dictionary. It consists of a key => value pair
 #### Syntax
-```
+```solidity
 mapping(key => value) <access specifier> <name>;
 ```
 **Usage**
-```
+```solidity
 mapping (address => uint) public accountBalance;
 ```
 ## Control Structures
@@ -178,7 +172,7 @@ Most of the control structures in JavaScript are available in Solidity except fo
 So there is: ``if, else, while, do, for, break, continue, return, ? :``**, with the usual semantics known from C or JavaScript.
 
 If you are stuck refer the below example for syntax.
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -250,12 +244,12 @@ contract ControlStatementsExample {
 
 ## Functions
 Here is how a function is declared in Solidity.
-```
+```solidity
 function sampleFunc(string name, uint amount) {  
 }
 ```
 You would call this function like:
-```
+```solidity
 sampleFunc("Shashank", 10000);
 ```
 ## Keywords
@@ -307,7 +301,7 @@ The `receive` the function is specifically designed to handle situations where
 ---
 ### Virtual and Override
 In Solidity, a derived contract can override functions and variables of the base contract. To do this, the base function or variable must be marked as `virtual`, and the derived function or variable must be marked as `override`.
-```
+```solidity
 // SPDX-License-Identifier: MIT  
 pragma solidity ^0.8.0;  
 contract A {  
@@ -324,7 +318,7 @@ return "foo in B";
 
 ### Super
 In Solidity, a derived contract can call a function from a base contract using the `super` keyword. This is useful when you want to extend the base contract's behavior, rather than completely replacing it.
-```
+```solidity
 // SPDX-License-Identifier: MIT  
 pragma solidity ^0.8.0;  
 contract A {  
