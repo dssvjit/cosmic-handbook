@@ -1,3 +1,4 @@
+# Solidity
 _Ethereum, the world Computer provides an enormously powerful shared global infrastructure to build a Decentralized application using a programming language called_ **_Solidity._**
 
 _Ethereum Solidity is a contract-oriented, high-level language with a syntax like that of JavaScript._
@@ -280,15 +281,14 @@ The `require` function is similar to the `assert` function, but is used to c
 ### Revert
 The revert function is used to explicitly revert state changes and stop the execution of a function. It is typically used to handle unexpected errors, such as invalid inputs or external contract calls that fail. If the condition is false, the function will immediately terminate and revert all state changes, including any transferred Ether.
 
-| Feature            | <mark style="background: #BBFABBA6;">**require**</mark>                | <mark style="background: #BBFABBA6;">**assert**</mark>                                        | <mark style="background: #BBFABBA6;">**revert**</mark>                                 |
+| Feature            | **require**                                                            | **assert**                                                                                    | **revert**                                                                             |
 | ------------------ | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | **Purpose**        | Used to validate inputs, conditions, and invariants in the code.       | Used to check for internal errors and invariants, primarily for debugging.                    | Used to revert a transaction manually with an optional error message.                  |
 | **Failure Impact** | Reverts the transaction, but refunds unused gas.                       | Reverts the transaction, and uses all gas.                                                    | Reverts the transaction and refunds unused gas (similar to `require`).                 |
 | **When to Use**    | Use for input validation, preconditions, and external call validation. | Use for internal errors and conditions that should never be false (e.g., invariants).         | Use when you want to revert a transaction and provide a custom error message or logic. |
 | **Gas Usage**      | Refunds remaining gas after revert.                                    | Consumes all gas and reverts.                                                                 | Refunds remaining gas after revert.                                                    |
-| **Error Handling** | You can provide an optional error message for better debugging.        | Typically doesn’t require an error message, but can be used for detecting programming errors. | Allows you to define custom error messages or even revert with custom error types.     |
-| **Use Case**       | For example, checking if the sender has enough balance.                | For example, checking the validity of the contract’s invariants.                              | For example, when a custom condition fails (e.g., user request not allowed).           |
-
+| **Error Handling** | You can provide an optional error message for better debugging.        | Typically doesn't require an error message, but can be used for detecting programming errors. | Allows you to define custom error messages or even revert with custom error types.     |
+| **Use Case**       | For example, checking if the sender has enough balance.                | For example, checking the validity of the contract's invariants.                              | For example, when a custom condition fails (e.g., user request not allowed).           |
 -----
 ### Payable
 In Solidity, the `payable` modifier is used to allow a function to receive Ether. Without this modifier, if you attempt to send Ether to a function, the transaction will be rejected and will fail.
