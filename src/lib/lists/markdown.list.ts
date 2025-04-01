@@ -1,6 +1,7 @@
 import HonoMD from "@/markdown/hono/index.hono";
 import ExpressMD from "@/markdown/express/index.express";
 import PrismaMD from "@/markdown/prisma/index.prisma";
+import solidityMD from "@/markdown/solidity/index.solidity";
 
 export const MARKDOWN_LIST = [
   {
@@ -157,6 +158,18 @@ export const MARKDOWN_LIST = [
         href: "typescript-initialization-with-prisma",
         markdown: PrismaMD.PrismaM6,
       },
+    ],
+  },
+  {
+    id: 5,
+    topic: "Solidity",
+    subtopic: [
+      {
+        id: 1,
+        title: "Get started with Solidity",
+        href: "get-started-with-solidity",
+        markdown: solidityMD.SolidityM1,
+      }
     ],
   },
 ];
