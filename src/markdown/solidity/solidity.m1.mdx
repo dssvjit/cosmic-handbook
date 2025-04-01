@@ -1,5 +1,5 @@
 # Solidity
-_Ethereum, the world Computer provides an enormously powerful shared global infrastructure to build a Decentralized application using a programming language called_ **_Solidity._**
+_Ethereum, the world Computer provides an enormously powerful shared global infrastructure to build a Decentralized application using a programming language called_ **_Solidity._**
 
 _Ethereum Solidity is a contract-oriented, high-level language with a syntax like that of JavaScript._
 Solidity is a tool used to generate a machine-level code to execute on EVM. The solidity compiler takes the high-level code and breaks it down into simpler instructions.
@@ -10,12 +10,12 @@ Before you begin, make sure you have the following tools installed:
 - **npm** (Node Package Manager, which is installed with Node.js)
 ### 2. **Install `solc` (Solidity Compiler)**:
 You can install the Solidity compiler (`solc`) as a Node.js package using npm:
-```sh
+```bash
 npm install solc
 ```
 ### 3. Add code to Javascript Project
 
-```js
+```javascript
 const solc = require('solc');
 
 // Solidity source code
@@ -41,7 +41,7 @@ console.log(compiled);
 ```
 ### 4. Complie code
 
-```sh
+```bash
 node compiler.js
 ```
 ## There is another way ...
@@ -53,7 +53,7 @@ The **Remix IDE**, if you don't want to set up a local environment, you can use 
 3. Remix also provides built-in features for compiling, testing, and deploying smart contracts.
 This is an ideal option for beginners as it's easy to use and doesn't require installation.
 ## What is a Contract ?? 
-A contract is the fundamental building block of Ethereum’s decentralized Applications. All variables and functions are part of a contract and this is the starting point of all the projects.
+A contract is the fundamental building block of Ethereum's decentralized Applications. All variables and functions are part of a contract and this is the starting point of all the projects.
 ### My First Smart Contract
 
 ```solidity
@@ -61,10 +61,10 @@ A contract is the fundamental building block of Ethereum’s decentralized Appli
 
 pragma solidity ^0.8.0;
 contract Counter{
-    uint public count; 
-    function incrementCount() public {
-        count ++;
-    }
+    uint public count; 
+    function incrementCount() public {
+        count ++;
+    }
 }
 ```
 
@@ -75,9 +75,9 @@ contract Counter{
 There are 4 key data types in solidity:
 #### Boolean
 **_Keyword: Bool_**
-The possible values are constants i.e., **true** or **false**
+The possible values are constants i.e., **true** or **false**
 #### Integers
-**_Keyword:_ int/uint** (uint8 to uint256 in steps of 8 (unsigned of 8 up to 256 bits) and int8 to int256)
+**_Keyword:_ int/uint** (uint8 to uint256 in steps of 8 (unsigned of 8 up to 256 bits) and int8 to int256)
 Signed and unsigned integers of various sizes.
 **Example:**
 ```solidity
@@ -85,12 +85,12 @@ contract MySample{
 uint UnsignedInt =50;  
 }
 ```
-_In the above statement, we have created a **uint** called **InsignedInt** & set it to 50._
+_In the above statement, we have created a **uint** called **InsignedInt** & set it to 50._
 #### Address:
-**_Keyword:_ address**
-Holds a 20-byte value (size of an Ethereum address). Address types also have _members_ and serve as a base for all contracts.
+**_Keyword:_ address**
+Holds a 20-byte value (size of an Ethereum address). Address types also have _members_ and serve as a base for all contracts.
 #### Members of Addresses: Balance & Transfer
-It is possible to query the balance of an address using the property **_balance_** and to send Ether to an address using the **_transfer_** function.
+It is possible to query the balance of an address using the property **_balance_** and to send Ether to an address using the **_transfer_** function.
 ```solidity
 address x = 0x123;  
 address myAddress = this;  
@@ -98,7 +98,7 @@ if  (x.balance < 10 && myAddress.balance > = 10)
 x.transfer(10);
 ```
 #### Strings
-**_Keyword:_ String** literals are written with either double or single-quotes **“foo”** or **‘bar’**.  
+**_Keyword:_ String** literals are written with either double or single-quotes **"foo"** or **'bar'**.  
 Used for arbitrary-length UTF-data.
 ```solidity
 string language = "Solidity";
@@ -107,28 +107,28 @@ string language = "Solidity";
 Operators in solidity are same as in JavaScript. Solidity has four types of operators:
 #### **Arithmetic Operators**
 Solidity has pretty straightforward Math operations. The following are similar to most of the programming languages:
-- Addition: `x + y
-- Subtraction: `x - y`
-- Multiplication: `x * y`
-- Division: `x / y`
-- Modulus / remainder: `x % y`
-Solidity also give you an option to use an exponential operator, here’s how:
+- Addition: `x + y`
+- Subtraction: `x - y`
+- Multiplication: `x * y`
+- Division: `x / y`
+- Modulus / remainder: `x % y`
+Solidity also give you an option to use an exponential operator, here's how:
 ```solidity
 uint x = 10 ** 3; // equal to 10^3 = 1000
 ```
 #### **Incremental Operators**
 Incremental operators in solidity:
 ```solidity
-a++, a–, ++a, –a, a+=1, a=a+1
+a++, a--, ++a, --a, a+=1, a=a+1
 ```
 #### **Bitwise Operators:**
 Following are the operators:
 ```solidity
-(Bitwise OR) ‘|’, (Bitwise XOR), (Bitwise negation) ‘~’ , (Bitwise right shift) ‘>>’, (Bitwise left shift) ‘<<‘
+(Bitwise OR) '|', (Bitwise XOR) '^', (Bitwise negation) '~', (Bitwise right shift) '>>', (Bitwise left shift) '<<'
 ```
 #### **Logical Operators:**
 
-Logical operators :
+Logical operators:
 ```solidity
 ! (logical negation), && (logical and), || (logical or), ==(equality), != (not equal)
 ```
@@ -170,7 +170,7 @@ mapping (address => uint) public accountBalance;
 ```
 ## Control Structures
 Most of the control structures in JavaScript are available in Solidity except for switch and goto.
-So there is: ``if, else, while, do, for, break, continue, return, ? :``**, with the usual semantics known from C or JavaScript.
+So there is: `if, else, while, do, for, break, continue, return, ? :`, with the usual semantics known from C or JavaScript.
 
 If you are stuck refer the below example for syntax.
 ```solidity
@@ -255,16 +255,16 @@ sampleFunc("Shashank", 10000);
 ```
 ## Keywords
 #### **View**
-View functions in Solidity are designed to retrieve and return data from the blockchain without modifying the state of the contract. These functions are used to provide read-only access to the contract’s state variables. By declaring a function as “view,” you are promising that the function will not change the state of the contract or any variables it accesses.
+View functions in Solidity are designed to retrieve and return data from the blockchain without modifying the state of the contract. These functions are used to provide read-only access to the contract's state variables. By declaring a function as "view," you are promising that the function will not change the state of the contract or any variables it accesses.
 #### Pure
 Pure functions in Solidity take the concept of view functions a step further. Not only do they not modify the state, but they also do not read or access any state variables. Pure functions are entirely self-contained and rely only on the input parameters provided to them.
 #### Storage and Memory
-Variables declared with the storage keyword are stored in the contract’s storage space, while variables declared with the memory keyword are stored in temporary memory
+Variables declared with the storage keyword are stored in the contract's storage space, while variables declared with the memory keyword are stored in temporary memory
 
-**_Storage_** refers to variables stored permanently on the blockchain.
-**_Memory_** variables are temporary, and are erased between external function calls to your contract. Think of it like your computer's hard disk vs RAM.
+**_Storage_** refers to variables stored permanently on the blockchain.
+**_Memory_** variables are temporary, and are erased between external function calls to your contract. Think of it like your computer's hard disk vs RAM.
 
-Most of the time you don't need to use these keywords because Solidity handles them by default. State variables (variables declared outside of functions) are by default `storage` and written permanently to the blockchain, while variables declared inside functions are `memory` and will disappear when the function call ends.
+Most of the time you don't need to use these keywords because Solidity handles them by default. State variables (variables declared outside of functions) are by default `storage` and written permanently to the blockchain, while variables declared inside functions are `memory` and will disappear when the function call ends.
 
 #### Internal and External
 
@@ -275,9 +275,9 @@ The external modifier is like a one-way street, allowing functions to be accesse
 
 ## Important Functions
 ### Assert
-The `assert` function checks for conditions that should never be false, such as an **internal invariant** being violated. If the condition is false, the function will immediately terminate and revert all state changes, including any transferred Ether.
+The `assert` function checks for conditions that should never be false, such as an **internal invariant** being violated. If the condition is false, the function will immediately terminate and revert all state changes, including any transferred Ether.
 ### Require
-The `require` function is similar to the `assert` function, but is used to check for user input errors, such as invalid function parameters. If the condition is false, the function will immediately terminate and revert all state changes. However, any Ether that was transferred will be refunded back to the caller.
+The `require` function is similar to the `assert` function, but is used to check for user input errors, such as invalid function parameters. If the condition is false, the function will immediately terminate and revert all state changes. However, any Ether that was transferred will be refunded back to the caller.
 ### Revert
 The revert function is used to explicitly revert state changes and stop the execution of a function. It is typically used to handle unexpected errors, such as invalid inputs or external contract calls that fail. If the condition is false, the function will immediately terminate and revert all state changes, including any transferred Ether.
 
@@ -289,18 +289,19 @@ The revert function is used to explicitly revert state changes and stop the exec
 | **Gas Usage**      | Refunds remaining gas after revert.                                    | Consumes all gas and reverts.                                                                 | Refunds remaining gas after revert.                                                    |
 | **Error Handling** | You can provide an optional error message for better debugging.        | Typically doesn't require an error message, but can be used for detecting programming errors. | Allows you to define custom error messages or even revert with custom error types.     |
 | **Use Case**       | For example, checking if the sender has enough balance.                | For example, checking the validity of the contract's invariants.                              | For example, when a custom condition fails (e.g., user request not allowed).           |
+
 -----
 ### Payable
-In Solidity, the `payable` modifier is used to allow a function to receive Ether. Without this modifier, if you attempt to send Ether to a function, the transaction will be rejected and will fail.
+In Solidity, the `payable` modifier is used to allow a function to receive Ether. Without this modifier, if you attempt to send Ether to a function, the transaction will be rejected and will fail.
 ### Fallback
-The fallback function in Solidity is a special function that is executed when a contract receives Ether along with a call to a function that does not exist in the contract, or if no data is supplied with the transaction. This function must be marked as `payable` if you want the contract to be able to receive Ether in this way.
+The fallback function in Solidity is a special function that is executed when a contract receives Ether along with a call to a function that does not exist in the contract, or if no data is supplied with the transaction. This function must be marked as `payable` if you want the contract to be able to receive Ether in this way.
 ### Receive
-Starting from Solidity 0.6.0, a new function type was introduced: the `receive` function. This function is triggered when a contract receives plain Ether (without data). This function must also be marked as `payable`.
-The `receive` the function is specifically designed to handle situations where a contract is meant to directly receive Ether without any additional data or function calls. It provides a more explicit and readable way to handle such transactions and is more gas-efficient than the fallback function.
+Starting from Solidity 0.6.0, a new function type was introduced: the `receive` function. This function is triggered when a contract receives plain Ether (without data). This function must also be marked as `payable`.
+The `receive` function is specifically designed to handle situations where a contract is meant to directly receive Ether without any additional data or function calls. It provides a more explicit and readable way to handle such transactions and is more gas-efficient than the fallback function.
 
 ---
 ### Virtual and Override
-In Solidity, a derived contract can override functions and variables of the base contract. To do this, the base function or variable must be marked as `virtual`, and the derived function or variable must be marked as `override`.
+In Solidity, a derived contract can override functions and variables of the base contract. To do this, the base function or variable must be marked as `virtual`, and the derived function or variable must be marked as `override`.
 ```solidity
 // SPDX-License-Identifier: MIT  
 pragma solidity ^0.8.0;  
@@ -317,7 +318,7 @@ return "foo in B";
 ```
 
 ### Super
-In Solidity, a derived contract can call a function from a base contract using the `super` keyword. This is useful when you want to extend the base contract's behavior, rather than completely replacing it.
+In Solidity, a derived contract can call a function from a base contract using the `super` keyword. This is useful when you want to extend the base contract's behavior, rather than completely replacing it.
 ```solidity
 // SPDX-License-Identifier: MIT  
 pragma solidity ^0.8.0;  
@@ -332,4 +333,4 @@ return string(abi.encodePacked("B -> ", super.foo()));
 }  
 }
 ```
-In this example, the contract `B` overrides the `foo` function of contract `A`, but it still calls `A`'s `foo` function using the `super` keyword. Therefore, if you call `foo` on an instance of `B`, it will return "B -> foo
+In this example, the contract `B` overrides the `foo` function of contract `A`, but it still calls `A`'s `foo` function using the `super` keyword. Therefore, if you call `foo` on an instance of `B`, it will return "B -> foo"
