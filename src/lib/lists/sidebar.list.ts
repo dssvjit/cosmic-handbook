@@ -3,6 +3,7 @@ import ExpressMD from "@/markdown/express/index.express";
 import PrismaMD from "@/markdown/prisma/index.prisma";
 import HtmlMD from "@/markdown/html/index.html";
 import CssMD from "@/markdown/css/index.css";
+import ReactMD from "@/markdown/react/index.react";
 import {
   SiExpress,
   SiHtml5,
@@ -303,33 +304,34 @@ export const LOWER_SIDEBAR_LIST = [
         subtopic: [
           {
             id: 1,
-            title: "Get started",
+            title: "Get Started",
             href: "get-started",
-            markdown: null,
+            markdown: ReactMD.R1,
           },
           {
             id: 2,
-            title: "Routing Guide",
-            href: "routing-guide",
-            markdown: null,
+            title: "React Props",
+            href: "react-props",
+            markdown: ReactMD.R2,
           },
           {
             id: 3,
-            title: "Middleware Guide",
-            href: "middleware-guide",
-            markdown: null,
+            title: "React State",
+            href: "react-state",
+            markdown: ReactMD.R3,
+
           },
           {
             id: 4,
-            title: "Request & Response",
-            href: "request-response",
-            markdown: null,
+            title: "Events in React",
+            href: "events-in-react",
+            markdown: ReactMD.R4,
           },
           {
             id: 5,
-            title: "Deployment Guide",
-            href: "deployment-guide",
-            markdown: null,
+            title: "Refs and DOM",
+            href: "refs-and-dom",
+            markdown: ReactMD.R5,
           },
         ],
       },

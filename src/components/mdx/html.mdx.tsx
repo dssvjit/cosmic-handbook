@@ -1,9 +1,10 @@
 import { ComponentPropsWithoutRef } from "react";
 
 export const CustomH1 = (props: ComponentPropsWithoutRef<"h1">) => {
-  const id = props.children
-    ? (props.children as string).toLowerCase().replace(/\s+/g, "-")
-    : "";
+  let id = "default-id";
+  if (typeof props.children === "string") {
+    id = props.children.toLowerCase().replace(/\s+/g, "-");
+  }
   return (
     <h1
       id={id}
@@ -14,9 +15,10 @@ export const CustomH1 = (props: ComponentPropsWithoutRef<"h1">) => {
 };
 
 export const CustomH2 = (props: ComponentPropsWithoutRef<"h2">) => {
-  const id = props.children
-    ? (props.children as string).toLowerCase().replace(/\s+/g, "-")
-    : "";
+  let id = "default-id";
+  if (typeof props.children === "string") {
+    id = props.children.toLowerCase().replace(/\s+/g, "-");
+  }
   return (
     <h2
       id={id}
@@ -27,10 +29,10 @@ export const CustomH2 = (props: ComponentPropsWithoutRef<"h2">) => {
 };
 
 export const CustomH3 = (props: ComponentPropsWithoutRef<"h3">) => {
-  const id = props.children
-    ? (props.children as string).toLowerCase().replace(/\s+/g, "-")
-    : "";
-  return (
+  let id = "default-id";
+  if (typeof props.children === "string") {
+    id = props.children.toLowerCase().replace(/\s+/g, "-");
+  }  return (
     <h3
       id={id}
       className="text-lg lg:text-[1.4rem] font-semibold text-app-typo-h2-dark mt-5 md:mt-8"
@@ -39,14 +41,21 @@ export const CustomH3 = (props: ComponentPropsWithoutRef<"h3">) => {
   );
 };
 
-export const CustomH4 = (props: ComponentPropsWithoutRef<"h3">) => {
+export const CustomH4 = (props: ComponentPropsWithoutRef<"h4">) => {
+  let id = "default-id";
+  if (typeof props.children === "string") {
+    id = props.children.toLowerCase().replace(/\s+/g, "-");
+  }
+
   return (
     <h4
+      id={id}
       className="text-base lg:text-[1.2rem] font-semibold text-app-typo-h2-dark py-1 mt-1 md:mt-4"
       {...props}
     />
   );
 };
+
 
 export const CustomParagraph = (props: ComponentPropsWithoutRef<"p">) => {
   return (
