@@ -1,0 +1,106 @@
+# Next.js Data Fetching
+
+## Introduction to Data Fetching
+
+Next.js provides multiple ways to fetch data based on different use cases, including **Server-Side Rendering (SSR)**, **Static Site Generation (SSG)**, **Incremental Static Regeneration (ISR)**, and **Client-Side Fetching**.
+
+## 1. Server-Side Rendering (SSR)
+
+Use `getServerSideProps()` to fetch data **on each request** at runtime.
+
+#### Example:
+
+```jsx
+export async function getServerSideProps() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+  const post = await res.json();
+  return { props: { post } };
+}
+
+export default function Post({ post }) {
+  return <h1>{post.title}</h1>;
+}
+```
+
+- Data is fetched **at request time**.
+- Ideal for pages with frequently updated data (e.g., dashboards).
+
+## 2. Static Site Generation (SSG)
+
+Use `getStaticProps()` to fetch data **at build time**.
+
+#### Example:
+
+```jsx
+export async function getStaticProps() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const posts = await res.json();
+  return { props: { posts } };
+}
+
+export default function Blog({ posts }) {
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+- Data is fetched **only at build time**.
+- Ideal for **blogs, documentation, and static content**.
+
+## 3. Incremental Static Regeneration (ISR)
+
+Use `revalidate` in `getStaticProps()` to **regenerate static pages** at a defined interval.
+
+#### Example:
+
+```jsx
+export async function getStaticProps() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+  const post = await res.json();
+  return { props: { post }, revalidate: 10 };
+}
+```
+
+- The page **rebuilds** after every `10` seconds when a request comes in.
+- Useful for **frequently updating content** without rebuilding the entire app.
+
+## 4. Client-Side Fetching
+
+Use `useEffect` and `fetch()` to load data **in the browser after the page loads**.
+
+#### Example:
+
+```jsx
+import { useEffect, useState } from "react";
+
+export default function ClientFetch() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts/1")
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, []);
+
+  return <h1>{data ? data.title : "Loading..."}</h1>;
+}
+```
+
+- Ideal for **user-specific or real-time data**.
+- Avoids unnecessary server load but **not SEO-friendly**.
+
+## Summary
+
+| Method                | When Data is Fetched | Best Use Case |
+|-----------------------|---------------------|---------------|
+| `getServerSideProps`  | On every request    | Real-time, dynamic pages |
+| `getStaticProps`      | At build time       | Blogs, static pages |
+| ISR (`revalidate`)    | Periodically        | News, frequently updating pages |
+| Client-side Fetching  | After page load     | User-specific data, live updates |
+
+
