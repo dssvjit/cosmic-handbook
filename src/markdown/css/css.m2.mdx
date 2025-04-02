@@ -6,25 +6,14 @@ CSS selectors are patterns used to target HTML elements for styling. They allow 
 
 ## Common CSS Selectors
 
-### Element Selector :
-
-Targets all elements of a specific type.Applies to all <p> elements.
-
-```css
-p {
-    color: blue;
-    font-size: 18px;
-}
-```
-
 ### Class Selector (.)
 
 Targets elements with a specific class. Allows reuse across multiple elements.
 
 ```css
 .highlight {
-    background-color: yellow;
-    font-weight: bold;
+  background-color: yellow;
+  font-weight: bold;
 }
 ```
 
@@ -34,20 +23,22 @@ Targets a unique element with a specific ID. Should be unique per page.
 
 ```css
 #header {
-    color: white;
-    background-color: black;
-    padding: 10px;
+  color: white;
+  background-color: black;
+  padding: 10px;
 }
 ```
 
-### Group Selector (``, )
+### Group Selector (`tag`, )
 
 Applies styles to multiple elements. Avoids repetition in CSS.
 
 ```css
-h1, h2, h3 {
-    color: darkblue;
-    text-align: center;
+h1,
+h2,
+h3 {
+  color: darkblue;
+  text-align: center;
 }
 ```
 
@@ -57,7 +48,7 @@ Targets elements inside a specific container. Useful for structuring styles base
 
 ```css
 div p {
-    color: green;
+  color: green;
 }
 ```
 

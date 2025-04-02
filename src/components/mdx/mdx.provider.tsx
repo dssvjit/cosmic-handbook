@@ -9,6 +9,7 @@ import {
   CustomH3,
   CustomH4,
   CustomImg,
+  CustomInlineCode,
   CustomLi,
   CustomLink,
   CustomOl,
@@ -54,7 +55,15 @@ const components: MDXComponents = {
   tr: CustomTr,
   td: CustomTd,
   th: CustomTh,
-  code: CodeblockMDX,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  code: (props: any) => {
+    if (props.className) {
+      return <CodeblockMDX {...props} />;
+    }
+    return <CustomInlineCode {...props} />;
+  },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  pre: (props: any) => <div {...props} />,
 };
 
 interface MDXProviderWrapperProps {

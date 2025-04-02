@@ -45,7 +45,7 @@ const Explore = () => {
   };
 
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-8">
+    <div className="w-full z-30 flex flex-col justify-center items-center gap-8">
       <div className="flex flex-col justify-center items-center">
         <h4 className="text-2xl md:text-3xl font-semibold font-dm-sans text-app-primary-dark">
           Start Exploring the Handbook
@@ -119,7 +119,7 @@ const ExploreCard = ({ item }: ExploreCardProps) => {
   return (
     <li
       key={item.id}
-      className={`relative flex flex-col items-start justify-center space-y-1 p-4 rounded-md bg-midnight hover:bg-app-secondary-dark/5 border border-app-border-dark transition-all cursor-pointer`}
+      className={`relative flex flex-col items-start justify-center space-y-1 p-4 rounded-md bg-app-border-dark/40 hover:bg-app-border-dark/60 border border-app-border-dark transition-all cursor-pointer`}
     >
       <div
         className={`z-0 w-10 h-10 blur-2xl bg-gradient-to-r ${item.gradient[0]} top-5 left-5 rounded-full absolute`}

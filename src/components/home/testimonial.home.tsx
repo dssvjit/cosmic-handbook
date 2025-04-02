@@ -11,7 +11,7 @@ const Testimonial = ({ img, name, username, body }: TestimonialProps) => {
   return (
     <figure
       className={cn(
-        "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
+        "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4 bg-app-border-dark/10 hover:bg-app-border-dark/60",
         "border-app-border-dark hover:bg-app-secondary-dark/5",
         "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
       )}
