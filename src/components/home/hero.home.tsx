@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-8">
+    <div className="w-full z-30 flex flex-col justify-center items-center gap-8">
       <HeroHeader />
       <HeroContent />
       <Marquee />
@@ -42,7 +42,7 @@ const HeroContent = () => {
   const navigate = useNavigate();
 
   const handleHandbookClick = () => {
-    navigate("/handbook");
+    navigate("handbook/meet-nxtgen/what-is-nxtgen");
   };
   return (
     <div className="relative w-full flex flex-col justify-center items-center gap-1">

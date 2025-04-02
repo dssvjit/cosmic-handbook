@@ -25,7 +25,7 @@ const CodeblockMDX = ({ className, children }: CodeblockMDXProps) => {
             <span className="w-2 h-2 bg-neutral-300 rounded-full"></span>
             <span className="w-2 h-2 bg-red-500 rounded-full"></span>
           </div>
-          <span className="text-[9px] text-app-secondary-dark">
+          <span className="text-[9px] md:text-sm text-app-secondary-dark">
             {language || "code"}
           </span>
         </div>

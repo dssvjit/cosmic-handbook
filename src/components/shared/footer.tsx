@@ -1,95 +1,7 @@
-import {
-  ArrowUpIcon,
-  FacebookIcon,
-  InstagramIcon,
-  LinkedinIcon,
-  TwitterIcon,
-} from "lucide-react";
 import Logo from "@/components/shared/logo";
-
-const SOCIAL_LISTS = [
-  {
-    id: 1,
-    url: "https://www.facebook.com",
-    component: FacebookIcon,
-  },
-  {
-    id: 2,
-    url: "https://www.twitter.com",
-    component: TwitterIcon,
-  },
-  {
-    id: 3,
-    url: "https://www.linkedin.com",
-    component: LinkedinIcon,
-  },
-  {
-    id: 4,
-    url: "https://www.instagram.com",
-    component: InstagramIcon,
-  },
-];
-
-const FOOTER_LISTS = [
-  {
-    id: 1,
-    title: "About",
-    subMenu: [
-      {
-        id: 1,
-        name: "About Us",
-        route: "/about",
-      },
-      {
-        id: 2,
-        name: "Our Team",
-        route: "/team",
-      },
-      {
-        id: 3,
-        name: "Careers",
-        route: "/careers",
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: "Resources",
-    subMenu: [
-      {
-        id: 1,
-        name: "Blog",
-        route: "/blog",
-      },
-      {
-        id: 2,
-        name: "Events",
-        route: "/events",
-      },
-      {
-        id: 3,
-        name: "Contact Us",
-        route: "/contact",
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: "Legal",
-    subMenu: [
-      {
-        id: 1,
-        name: "Privacy Policy",
-        route: "/privacy",
-      },
-      {
-        id: 2,
-        name: "Terms of Service",
-        route: "/terms",
-      },
-    ],
-  },
-];
+import { FOOTER_LISTS } from "@/lib/lists/footer.list";
+import { SOCIAL_LISTS } from "@/lib/lists/social.list";
+import { ArrowUpIcon } from "lucide-react";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -130,15 +42,15 @@ const Footer = () => {
                 key={list.id}
                 className="flex flex-col justify-center items-start"
               >
-                <h4 className="text-sm md:text-base font-semibold text-neutral-600">
+                <h4 className="text-sm md:text-base font-semibold text-app-typo-h2-dark">
                   {list.title}
                 </h4>
-                <ul className="flex flex-col justify-center items-start">
+                <ul className="flex flex-col justify-center items-start text-app-typo-p-dark/60">
                   {list.subMenu.map((sub) => (
                     <li key={sub.id}>
                       <a
                         href={sub.route}
-                        className="text-xs md:text-sm text-neutral-500 hover:text-neutral-600"
+                        className="text-xs md:text-sm hover:text-app-primary-dark/80 transition-all duration-200"
                       >
                         {sub.name}
                       </a>
