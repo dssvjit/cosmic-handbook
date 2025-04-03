@@ -1,0 +1,88 @@
+# Next.js Middleware
+
+## Introduction to Middleware
+
+Middleware in Next.js allows you to execute code **before a request is completed**. It runs **before rendering a page**, enabling tasks like authentication, redirection, and logging.
+
+Middleware runs on the **Edge Runtime**, making it **fast and efficient**.
+
+## Creating Middleware
+
+To add middleware, create a `_middleware.js` or `middleware.js` file inside the **root** of your project.
+
+#### Example:
+
+```ts
+import { NextResponse } from "next/server";
+
+export function middleware(req) {
+  console.log("Middleware triggered");
+  return NextResponse.next();
+}
+```
+
+- This middleware runs on every request and **logs a message**.
+- `NextResponse.next()` allows the request to proceed.
+
+## Redirecting Requests
+
+You can **redirect users** conditionally using `NextResponse.redirect()`.
+
+#### Example:
+
+```ts
+import { NextResponse } from "next/server";
+
+export function middleware(req) {
+  const url = req.nextUrl;
+  if (url.pathname === "/dashboard") {
+    return NextResponse.redirect("/login");
+  }
+  return NextResponse.next();
+}
+```
+
+- Users accessing `/dashboard` will be redirected to `/login`.
+
+## Middleware for Authentication
+
+You can protect routes by checking authentication status before serving a page.
+
+#### Example:
+
+```ts
+import { NextResponse } from "next/server";
+
+export function middleware(req) {
+  const token = req.cookies.get("auth-token");
+  if (!token) {
+    return NextResponse.redirect("/login");
+  }
+  return NextResponse.next();
+}
+```
+
+- If a user **does not have a valid token**, they are redirected to `/login`.
+
+## Matching Specific Routes
+
+By default, middleware runs on **all requests**, but you can limit it to certain paths.
+
+#### Example:
+
+```ts
+export const config = {
+  matcher: ["/dashboard/:path*", "/profile"],
+};
+```
+
+- This middleware **only runs** on `/dashboard/*` and `/profile` routes.
+
+## Summary
+
+- **Middleware runs before a request completes**.
+- Useful for **redirects, authentication, logging, and headers**.
+- Runs on the **Edge Runtime** for **faster execution**.
+- Use `NextResponse.redirect()` and `NextResponse.next()` to control responses.
+
+This wraps up Middleware! 🚀
