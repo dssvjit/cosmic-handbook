@@ -1,0 +1,124 @@
+# React State & Lifecycle
+
+## What is State?
+
+State is a **built-in object** in React that allows components to **store and manage dynamic data**. Unlike props, state **can be updated** within a component.
+
+## Using useState Hook
+
+The `useState` hook lets functional components manage state.
+
+### Example:
+
+```jsx
+import { useState } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+```
+
+### Explanation:
+- `useState(0)` initializes `count` with `0`.
+- `setCount(count + 1)` updates `count` when the button is clicked.
+
+## The Component Lifecycle
+
+React class components have lifecycle methods that run at different stages:
+
+1. **Mounting (Component is created)**
+2. **Updating (State/Props change, re-rendering occurs)**
+3. **Unmounting (Component is removed from the DOM)**
+
+## Lifecycle Methods in Class Components
+
+For class components, React provides lifecycle methods:
+
+### Mounting (`componentDidMount`)
+Runs **after the component is inserted** into the DOM.
+
+```jsx
+class Example extends React.Component {
+  componentDidMount() {
+    console.log("Component Mounted!");
+  }
+  render() {
+    return <h1>Hello, React!</h1>;
+  }
+}
+```
+
+### Updating (`componentDidUpdate`)
+Runs **after props/state change**.
+
+```jsx
+class Example extends React.Component {
+  componentDidUpdate() {
+    console.log("Component Updated!");
+  }
+  render() {
+    return <h1>React Lifecycle</h1>;
+  }
+}
+```
+
+### Unmounting (`componentWillUnmount`)
+Runs **before the component is removed** from the DOM.
+
+```jsx
+class Example extends React.Component {
+  componentWillUnmount() {
+    console.log("Component Unmounted!");
+  }
+  render() {
+    return <h1>Goodbye!</h1>;
+  }
+}
+```
+
+## Using useEffect Hook in Functional Components
+
+For functional components, `useEffect` replaces lifecycle methods.
+
+### Mounting (Runs once)
+```jsx
+import { useEffect } from "react";
+
+function Example() {
+  useEffect(() => {
+    console.log("Component Mounted!");
+  }, []);
+  return <h1>Hello, React!</h1>;
+}
+```
+
+### Updating (Runs when dependencies change)
+```jsx
+useEffect(() => {
+  console.log("State changed!");
+}, [state]);
+```
+
+### Unmounting (Cleanup function)
+```jsx
+useEffect(() => {
+  return () => console.log("Component Unmounted!");
+}, []);
+```
+
+## Summary
+
+| Concept              | Functional Component | Class Component |
+|----------------------|---------------------|----------------|
+| **State Management** | `useState`          | `this.state` & `setState` |
+| **Mounting**        | `useEffect(() => {}, [])` | `componentDidMount` |
+| **Updating**        | `useEffect(() => {}, [dependencies])` | `componentDidUpdate` |
+| **Unmounting**      | Cleanup in `useEffect` | `componentWillUnmount` |
+

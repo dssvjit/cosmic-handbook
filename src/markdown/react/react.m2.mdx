@@ -1,0 +1,85 @@
+# React Props
+
+## What are Props?
+
+Props (short for **properties**) are how data is passed **from a parent component to a child component** in React. Props are **read-only** and help make components reusable and dynamic.
+
+## Passing Props to a Component
+
+Props are passed as attributes to components, just like HTML attributes.
+
+#### Example:
+
+```jsx
+function Greeting(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+function App() {
+  return <Greeting name="Alice" />;
+}
+```
+
+- Here, `name="Alice"` is passed as a prop to `Greeting`.
+- `Greeting` receives `props` and displays **Hello, Alice!**.
+
+## Destructuring Props
+
+Instead of using `props.name`, you can **destructure props** for cleaner code.
+
+#### Example:
+
+```jsx
+function Greeting({ name }) {
+  return <h1>Hello, {name}!</h1>;
+}
+```
+
+- `{ name }` is **destructured** from `props`.
+- Makes the code **more readable**.
+
+## Default Props
+
+You can set **default values** for props if none are provided.
+
+#### Example:
+
+```jsx
+function Button({ text = "Click Me" }) {
+  return <button>{text}</button>;
+}
+```
+
+- If `text` is not provided, the button will display **Click Me**.
+
+## Prop Types (Type Checking)
+
+React allows you to define **expected data types** for props using `prop-types`.
+
+#### Example:
+
+```jsx
+import PropTypes from "prop-types";
+
+function Greeting({ name, age }) {
+  return <h1>{name} is {age} years old.</h1>;
+}
+
+Greeting.propTypes = {
+  name: PropTypes.string.isRequired,
+  age: PropTypes.number,
+};
+```
+
+- `name` **must** be a string and is **required**.
+- `age` is optional but must be a number.
+
+## Summary
+
+| Feature           | Description |
+|------------------|-------------|
+| **Props** | Pass data from parent to child |
+| **Destructuring** | Cleaner way to access props |
+| **Default Props** | Set fallback values for props |
+| **Prop Types** | Ensure correct prop types are passed |
+
