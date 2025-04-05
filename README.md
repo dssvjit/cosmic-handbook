@@ -1,50 +1,44 @@
-# React + TypeScript + Vite
+# 📚 COSMIC HANDBOOK - NXTGEN
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **NXTGEN** — a developer-curated guide for essential tools, technologies, and workflows.  
+From frontend basics to backend architecture, Docker setups, and deployment — this handbook is your all-in-one reference built with love by the [DSS VJIT](https://club.dssvjit.in/) team.
 
-Currently, two official plugins are available:
+## 🧠 What is this?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A fully open-source **interactive developer handbook** powered by:
 
-## Expanding the ESLint configuration
+- ✨ React + TypeScript + Tailwind CSS
+- 📝 MDX-based modular content
+- 💡 Designed for both beginners and pros
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 📦 Project Structure
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```md
+📁 src
+├── app/ # Pages and Layyouts of App
+├── components/ # UI and logic components (navbar, sidebar, etc.)
+├── lib/ # Library files  
+├── markdown/ # MDX content (Docker, Express, Prisma, etc.)
+├── styles/ # Tailwind CSS and global styles
+└── ...
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🛠️ Tech Stack
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+| Category           | Technology/Library        |
+| ------------------ | ------------------------- |
+| Frontend Framework | React + Vite + TypeScript |
+| Styling            | Tailwind CSS              |
+| Routing            | React Router DOM          |
+| Markdown           | MDX                       |
+| Docs UI            | ShadCN UI + Radix UI      |
+| DevOps             | Docker (used in docs)     |
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## 🙌 Contributing
+
+We welcome contributions from everyone!
+Please follow our [CONTRIBUTING.md](https://github.com/dssvjit/cosmic-handbook/blob/main/CONTRIBUTING.md) guide.
+
+## 🧠 Maintained by
+
+Made with ❤️ by the Tech Team at [DSS - VJIT](https://club.dssvjit.in/)

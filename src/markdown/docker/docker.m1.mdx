@@ -1,0 +1,114 @@
+# Introduction to Docker
+
+## What is Docker?
+
+Docker is a containerization platform that helps developers package applications and their dependencies into lightweight, portable containers. These containers ensure that applications run consistently across different environments, from local development to production.
+
+### Why Use Docker?
+
+- **Environment Consistency** : Avoid "it works on my machine" issues.
+
+- **Fast Deployment** : Containers start in seconds.
+
+- **Lightweight** : Uses fewer resources than virtual machines (VMs).
+
+- **Scalability** : Easily scale applications with multiple containers.
+
+- **Isolation** : Each container runs its own dependencies without interfering with others.
+
+## Key Concepts of Docker
+
+#### 1. Images and Containers
+
+- **Image:** A pre-built, read-only template containing everything needed to run an application (OS, dependencies, and code)
+
+- **Container:** A running instance of an image.
+
+#### Running a container from an image
+
+```sh
+docker run hello-world
+```
+
+This command will download the `hello-world` image from Docker Hub and run it in a new container.
+
+#### 2. Docker Engine
+
+Docker Engine is the core of Docker, responsible for creating and managing containers. It runs in the background and listens for commands to create, start, stop, and remove containers.
+
+#### 3. Docker CLI & Commands
+
+Docker provides a Command Line Interface (CLI) to interact with containers. Some essential commands:
+
+| Command                      | Description                                  |
+| ---------------------------- | -------------------------------------------- |
+| `docker pull <image>`        | Download an image from Docker Hub            |
+| `docker images`              | List all downloaded images                   |
+| `docker run <image>`         | Create and start a container                 |
+| `docker ps`                  | List running containers                      |
+| `docker ps -a`               | List all containers (including stopped ones) |
+| `docker stop <container_id>` | Stop a running container                     |
+| `docker rm <container_id>`   | Remove a container                           |
+| `docker rmi <image>`         | Remove an image                              |
+
+## How Docker Works (Step-by-Step)
+
+#### 1. Pull an Image – Download a pre-built image from Docker Hub.
+
+To run the Express application, simply use Node.js:
+
+```sh
+docker pull nginx
+```
+
+This command downloads/pulls the latest `Nginx` image from Docker Hub into your machine.
+
+#### 2. Run a Container – Create a running instance of the image.
+
+```sh
+docker run -d -p 80:80 nginx
+```
+
+`-d`: Runs container in the background (detached mode).
+
+`-p`: Maps port 80 of the host to port 80 of the container.
+
+### 3. Access the Application – Open a web browser and navigate to `http://localhost`.
+
+This will display the default Nginx welcome page, indicating that the container is running successfully.
+
+#### 4. Stop the Container – Use the `docker ps` command to find the container ID and stop it.
+
+```sh
+docker ps
+```
+
+#### Example Output:
+
+```sh
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS     NAMES
+abcdef123456   nginx     "nginx -g 'daemon of…"   10 seconds ago   Up 9 seconds    80/tcp    pesky_haibt
+```
+
+#### 5. Stop and Remove the Container – Use the `docker rm` command to remove the stopped container.
+
+```sh
+docker stop abcdef123456
+docker rm abcdef123456
+docker rmi nginx
+```
+
+`rm` : Removes the container from your local machine. (rm - Remove)
+
+`rmi` : Removes the image from your local machine. (rmi - Remove Image)
+
+## Common Use Cases of Docker
+
+- **Microservices Development** – Run multiple services in isolated containers.
+- **Database Management** – Easily spin up databases like PostgreSQL, MySQL, or Redis.
+- **CI/CD Pipelines** – Automate software deployment with containers.
+- **Cloud Deployment** – Run applications in the cloud with Kubernetes.
+
+## Conclusion
+
+Docker makes application development and deployment efficient, portable, and scalable. It removes dependency issues and provides an easy way to manage applications across different environments. In the next module, we'll explore Docker Compose and how it simplifies multi-container applications.

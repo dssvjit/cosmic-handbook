@@ -1,0 +1,82 @@
+# Deploying Docker Containers
+
+Once your application is containerized, the next step is to **deploy it** to the cloud so others can access it.
+
+In this module, we’ll walk through the most common and beginner-friendly deployment options:
+
+## Option 1: Push to Docker Hub
+
+[Docker Hub](https://hub.docker.com/) is a public registry for storing and sharing images.
+
+### Step-by-step
+
+#### 1. Log in to Docker
+
+```sh
+docker login
+```
+
+#### 2. Tag your image
+
+```sh
+docker tag my-app <username>/my-app:latest
+```
+
+Replace username with your Docker Hub username.
+
+#### 3. Push your image
+
+```sh
+docker push <username>/my-app:latest
+```
+
+This uploads your image to Docker Hub.
+
+## Option 2: Deploy to Railway
+
+[Railway](https://railway.com/) lets you deploy Docker containers without worrying about infra.
+
+### Step-by-step
+
+- Go to railway.app
+
+- Click New Project → Deploy from GitHub
+
+- Choose your repo that contains a `Dockerfile`
+
+- Railway detects and builds it automatically
+
+- Add any environment variables if needed
+
+- Click Deploy
+
+## Option 3: Deploy on a VPS (AWS EC2, DigitalOcean, etc.)
+
+You're on Windows, deploying to a remote Linux server (VPS).
+
+#### 1. SSH into your remote VPS
+
+```sh
+ssh root@your-server-ip
+```
+
+#### 2. Pull and run your container
+
+```sh
+docker pull username/my-app
+docker run -d -p 80:3000 username/my-app
+```
+
+That's it — your app is now live!
+
+## Summary
+
+| Method       | Best For                    | Difficulty | Docker Hub Sharing | Railway Deployment | VPS (DO/EC2) Control |
+| ------------ | --------------------------- | ---------- | ------------------ | ------------------ | -------------------- |
+| Docker Hub   | Sharing public images       | Easy       | Yes                | N/A                | N/A                  |
+| Railway      | Deploying apps in minutes   | Easiest    | Limited            | Yes                | Limited              |
+| VPS (DO/EC2) | Full control + custom setup | Medium     | Yes                | No                 | Full                 |
+
+## Conclusion
+
+Docker is a powerful tool for containerizing applications, making them portable and easy to deploy. Whether you're sharing images on Docker Hub, deploying to Railway, or running on a VPS, the possibilities are endless. Happy coding!
