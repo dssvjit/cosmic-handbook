@@ -1,4 +1,4 @@
-import opencv from "@/markdown/opencv/opencv.mdx";
+import opencvM1 from "@/markdown/opencv/opencv.M1.mdx";
 export default {
-  opencv,
+  opencvM1,
 };
