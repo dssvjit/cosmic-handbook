@@ -1,0 +1,88 @@
+# Hono Routing Guide
+
+Routing in Hono is simple and efficient, following a syntax similar to Express.js. It supports:
+
+## Basic Routing
+
+Hono uses **.get()**, **.post()**, **.put()**, and other HTTP methods to define routes.
+
+Example:
+
+```ts
+import { Hono } from "hono";
+
+const app = new Hono();
+
+app.get("/", (c) => c.text("Hello, Hono!"));
+
+export default app;
+```
+
+Here, the "/" route responds with "Hello, Hono!"
+
+## Dynamic & Named Parameters
+
+You can define dynamic routes using **:paramName**.
+
+```ts
+app.get("/user/:id", (c) => {
+  const userId = c.req.param("id");
+  return c.text(`User ID: ${userId}`);
+});
+```
+
+When a request is made to /user/42, it responds with "User ID: 42".
+
+### Nested Routes
+
+For better structuring, you can nest routes inside a Hono instance.
+
+```ts
+const user = new Hono();
+
+user.get("/", (c) => c.text("User List"));
+user.get("/:id", (c) => c.text(`User ID: ${c.req.param("id")}`));
+
+app.route("/user", user);
+```
+
+Now, the following routes work
+
+GET /user → Returns "User List"
+
+GET /user/123 → Returns "User ID: 123"
+
+### Wildcard Routes
+
+Use \* to match any path after a certain prefix.
+
+```ts
+app.get("/docs/*", (c) => {
+  return c.text("Docs Page");
+});
+```
+
+/docs/setup → Matches
+
+/docs/api/intro → Matches
+
+### Route Groups & Middleware
+
+Group routes together and apply middleware at a higher level.
+
+```ts
+const api = app.basePath("/api");
+
+api.get("/products", (c) => c.json({ products: ["Laptop", "Phone"] }));
+api.get("/orders", (c) => c.json({ orders: [123, 456] }));
+```
+
+Now,
+
+/api/products → Returns a JSON list of products
+
+/api/orders → Returns a JSON list of orders
+
+### Conclusion
+
+Hono's routing system is simple yet powerful, supporting nested routes, parameters, wildcards, and middleware. You can now organize your API efficiently!
