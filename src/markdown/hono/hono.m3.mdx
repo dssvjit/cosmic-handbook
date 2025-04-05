@@ -1,0 +1,92 @@
+# Hono Middleware Guide
+
+## Introduction
+
+Middleware in Hono allows you to process requests before they reach the route handler. It’s commonly used for:
+
+### Creating Custom Middleware
+
+A middleware function takes a **Context** **(c)** and **next()** function.
+
+```ts
+app.use("*", async (c, next) => {
+  console.log(`Incoming request: ${c.req.method} ${c.req.url}`);
+  await next(); // Call next middleware/handler
+});
+```
+
+This logs every request before passing it to the route.
+
+### Adding CORS Middleware
+
+For handling Cross-Origin Resource Sharing (CORS):
+
+```ts
+import { cors } from "hono/cors";
+
+app.use("*", cors());
+```
+
+This allows requests from any origin.
+
+```ts
+app.use("*", cors({ origin: "https://example.com" }));
+```
+
+To allow specific origins:
+
+### Authentication Middleware
+
+A JWT-based auth middleware example:
+
+```ts
+import { jwt } from "hono/jwt";
+
+app.use("/dashboard/*", jwt({ secret: "your-secret-key" }));
+
+app.get("/dashboard", (c) => {
+  return c.text("You are authenticated!");
+});
+```
+
+This protects **/dashboard/\*** routes using JWT authentication.
+If the token is invalid or missing, it blocks access.
+
+### Role-Based Authorization Middleware
+
+Extend authentication with role-based access:
+
+```ts
+const authMiddleware = async (c, next) => {
+  const user = c.get("user"); // Assume user info is stored
+  if (user?.role !== "admin") {
+    return c.text("Forbidden", 403);
+  }
+  await next();
+};
+
+app.get("/admin", authMiddleware, (c) => {
+  return c.text("Welcome, Admin!");
+});
+```
+
+Only users with role: **"admin"** can access **/admin**.
+
+### Global vs. Route-Level Middleware
+
+Global Middleware: Affects all routes.
+
+```ts
+app.use("*", (c, next) => { ... });
+
+```
+
+Route-Level Middleware: Affects specific routes only.
+
+```ts
+app.get("/secure", authMiddleware, (c) => c.text("Secure Data"));
+```
+
+### Conclusion
+
+Middleware in Hono is lightweight and flexible, making it easy to handle authentication, logging, and security.
