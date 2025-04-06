@@ -1,0 +1,70 @@
+# Getting Started with OpenCV
+
+## Introduction & Why OpenCV?
+
+OpenCV (Open Source Computer Vision Library) is an **open-source computer vision and machine learning library**. It provides a vast collection of functions for **image processing, video analysis, machine learning, and deep learning**. OpenCV is widely used in applications like **face detection, object tracking, and real-time image analysis**.
+
+### Why Choose OpenCV Over Other Image Processing Libraries?
+
+OpenCV is highly optimized for performance and can run efficiently on **CPUs, GPUs, and specialized hardware** like Raspberry Pi. It supports **C++, Python, Java**, and other languages, making it versatile for different applications.
+
+## Installation & Setup
+
+To start using OpenCV, you first need to install it via pip:
+
+### Install OpenCV via pip:
+
+```sh
+pip install opencv-python
+```
+
+For additional functionalities like GPU support and contrib modules:
+
+```sh
+pip install opencv-contrib-python
+```
+
+### Now, let's create a simple OpenCV program
+
+This basic setup loads an image and displays it using OpenCV.
+
+```python
+import cv2
+
+# Load an image
+image = cv2.imread("example.jpg")
+
+# Display the image
+cv2.imshow("Image", image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+
+### Key Differences Between OpenCV & PIL/Scikit-Image
+
+OpenCV is often compared with **PIL (Pillow) and Scikit-Image**, as all three can be used for image processing. However, there are key differences:
+
+| Feature          | OpenCV                        | PIL (Pillow)             | Scikit-Image         |
+|-----------------|--------------------------------|---------------------------|-----------------------|
+| Performance     | Extremely fast (C++ backend) | Moderate                  | Moderate              |
+| Image Formats  | Supports many formats        | Mostly PNG, JPEG, BMP     | Limited support       |
+| Deep Learning  | Yes (DNN module)             | No                        | Limited               |
+| Video Support  | Yes                           | No                        | No                    |
+| GPU Acceleration| Yes (CUDA support)          | No                        | No                    |
+
+OpenCV is ideal for **real-time applications, computer vision, and machine learning**, whereas PIL and Scikit-Image are better suited for **basic image editing and analysis**.
+
+### Running the Code
+
+To run an OpenCV script, use:
+
+```sh
+python script.py
+```
+
+This will execute the script and open an image window.
+
+---
+
+This guide should help you get started with OpenCV!
+
