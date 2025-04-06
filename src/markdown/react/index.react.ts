@@ -1,12 +1,13 @@
-import R1 from './react.m1.mdx';
-import R2 from './react.m2.mdx';
-import R3 from './react.m3.mdx';
-import R4 from './react.m4.mdx';
-import R5 from './react.m5.mdx';
+import ReactM1 from "@/markdown/react/react.m1.mdx";
+import ReactM2 from "@/markdown/react/react.m2.mdx";
+import ReactM3 from "@/markdown/react/react.m3.mdx";
+import ReactM4 from "@/markdown/react/react.m4.mdx";
+import ReactM5 from "@/markdown/react/react.m5.mdx";
+
 export default {
-    R1,
-    R2,
-    R3,
-    R4,
-    R5,
-}
+  ReactM1,
+  ReactM2,
+  ReactM3,
+  ReactM4,
+  ReactM5,
+};
