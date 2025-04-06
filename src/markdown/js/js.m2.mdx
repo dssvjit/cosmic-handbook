@@ -1,0 +1,139 @@
+# Basic JavaScript Syntax and Usage
+
+## Variables and Constants
+
+JavaScript uses `var`, `let`, and `const` to declare variables.
+
+### Example:
+```js
+let name = "Alice";     // Block-scoped, can be reassigned
+const age = 25;         // Block-scoped, cannot be reassigned
+var city = "New York";  // Function-scoped, older syntax
+```
+
+Use `let` and `const` in modern JavaScript — avoid `var` unless necessary.
+
+---
+
+## Data Types
+
+JavaScript is dynamically typed. Common data types include:
+
+| Type      | Example               |
+|-----------|-----------------------|
+| String    | `"Hello"`             |
+| Number    | `42`                  |
+| Boolean   | `true`, `false`       |
+| Array     | `["a", "b", "c"]`     |
+| Object    | `{ name: "Tom" }`     |
+| Null      | `null`                |
+| Undefined | `undefined`           |
+
+---
+
+## Operators
+
+JavaScript supports arithmetic, comparison, and logical operators.
+
+### Examples:
+```js
+let a = 10;
+let b = 5;
+
+console.log(a + b); // 15
+console.log(a === b); // false
+console.log(a > b && b > 0); // true
+```
+
+---
+
+## Conditional Statements
+
+Use `if`, `else if`, and `else` to add logic to your code.
+
+### Example:
+```js
+let score = 85;
+
+if (score >= 90) {
+  console.log("A");
+} else if (score >= 80) {
+  console.log("B");
+} else {
+  console.log("Try again!");
+}
+```
+
+---
+
+## Switch Statement
+
+Use `switch` for multiple condition checks.
+
+### Example:
+```js
+let color = "blue";
+
+switch (color) {
+  case "red":
+    console.log("Red selected");
+    break;
+  case "blue":
+    console.log("Blue selected");
+    break;
+  default:
+    console.log("No color matched");
+}
+```
+
+---
+
+## Loops
+
+### 1. For Loop
+```js
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}
+```
+
+### 2. While Loop
+```js
+let i = 0;
+while (i < 5) {
+  console.log(i);
+  i++;
+}
+```
+
+### 3. Do...While Loop
+```js
+let j = 0;
+do {
+  console.log(j);
+  j++;
+} while (j < 3);
+```
+
+---
+
+## Functions
+
+Functions allow you to reuse blocks of code.
+
+### Regular Function
+```js
+function greet(name) {
+  return "Hello, " + name;
+}
+```
+
+### Arrow Function (ES6)
+```js
+const greet = (name) => "Hello, " + name;
+```
+
+---
+
+In the next section, we’ll explore arrays, objects, and how JavaScript works with data more efficiently.
+
