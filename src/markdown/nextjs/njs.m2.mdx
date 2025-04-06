@@ -1,0 +1,84 @@
+# Next.js Routing
+
+## Introduction to Routing
+
+Next.js uses a **file-based routing system**, meaning the structure of the `pages/` directory determines the app's routes automatically.
+
+## Basic Routing
+
+Creating a new page is as simple as adding a new file in the `pages/` directory.
+
+#### Example:
+Create a new file at `pages/about.js`:
+
+```jsx
+export default function About() {
+  return <h1>About Page</h1>;
+}
+```
+
+Now, visiting `http://localhost:3000/about` will display the **About Page**.
+
+## Dynamic Routing
+
+To create dynamic routes, use square brackets (`[]`) in the filename.
+
+#### Example:
+Create `pages/blog/[id].js`:
+
+```jsx
+import { useRouter } from 'next/router';
+
+export default function BlogPost() {
+  const router = useRouter();
+  const { id } = router.query;
+  
+  return <h1>Blog Post: {id}</h1>;
+}
+```
+
+Visiting `http://localhost:3000/blog/123` will display **Blog Post: 123**.
+
+## Catch-All Routes
+
+You can capture multiple dynamic segments using `[...]`.
+
+#### Example:
+Create `pages/docs/[...slug].js`:
+
+```jsx
+import { useRouter } from 'next/router';
+
+export default function Docs() {
+  const router = useRouter();
+  const { slug } = router.query;
+  
+  return <h1>Docs: {slug?.join("/")}</h1>;
+}
+```
+
+Visiting `http://localhost:3000/docs/nextjs/routing` will display **Docs: nextjs/routing**.
+
+## Link Component for Navigation
+
+Use the `next/link` component for client-side navigation.
+
+```jsx
+import Link from 'next/link';
+
+export default function Home() {
+  return (
+    <div>
+      <h1>Home Page</h1>
+      <Link href="/about">Go to About</Link>
+    </div>
+  );
+}
+```
+
+## Summary
+
+- **File-based routing** automates URL creation.
+- **Dynamic routes** use `[param]` to create flexible URLs.
+- **Catch-all routes** handle multiple parameters with `[...param]`.
+- Use **`next/link`** for efficient client-side navigation.
