@@ -3,6 +3,7 @@ import ExpressMD from "@/markdown/express/index.express";
 import PrismaMD from "@/markdown/prisma/index.prisma";
 import HtmlMD from "@/markdown/html/index.html";
 import CssMD from "@/markdown/css/index.css";
+import NextMD from "@/markdown/nextjs/index.nextjs";
 import ReactMD from "@/markdown/react/index.react";
 import DockerMD from "@/markdown/docker/index.docker";
 
@@ -271,31 +272,31 @@ export const LOWER_SIDEBAR_LIST = [
             id: 1,
             title: "Get started",
             href: "get-started",
-            markdown: null,
+            markdown: NextMD.NextjsM1,
           },
           {
             id: 2,
             title: "Routing Guide",
             href: "routing-guide",
-            markdown: null,
+            markdown: NextMD.NextjsM2,
           },
           {
             id: 3,
-            title: "Middleware Guide",
-            href: "middleware-guide",
-            markdown: null,
+            title: "API Routes",
+            href: "api-routes",
+            markdown: NextMD.NextjsM3,
           },
           {
             id: 4,
-            title: "Request & Response",
-            href: "request-response",
-            markdown: null,
+            title: "Data Fetching",
+            href: "data-fetching",
+            markdown: NextMD.NextjsM4,
           },
           {
             id: 5,
-            title: "Deployment Guide",
-            href: "deployment-guide",
-            markdown: null,
+            title: "Middleware",
+            href: "middleware",
+            markdown: NextMD.NextjsM5,
           },
         ],
       },
