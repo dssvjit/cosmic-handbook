@@ -1,4 +1,4 @@
-import streamlitM1 from "@/markdown/streamlit/streamlit.M1.mdx";
+import StreamlitM1 from "@/markdown/streamlit/streamlit.M1.mdx";
 export default {
-  streamlitM1,
+  StreamlitM1,
 };

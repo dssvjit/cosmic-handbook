@@ -6,6 +6,8 @@ import CssMD from "@/markdown/css/index.css";
 import NextMD from "@/markdown/nextjs/index.nextjs";
 import ReactMD from "@/markdown/react/index.react";
 import DockerMD from "@/markdown/docker/index.docker";
+import OpencvMD from "@/markdown/opencv/index.opencv";
+import StreamlitMD from "@/markdown/streamlit/index.streamlit";
 
 import {
   SiExpress,
@@ -15,7 +17,8 @@ import {
   SiCss3,
   SiNextdotjs,
   SiDocker,
-  SiGraphql,
+  SiOpencv,
+  SiStreamlit,
 } from "react-icons/si";
 
 export const UPPER_SIDEBAR_LIST = [
@@ -376,75 +379,27 @@ export const LOWER_SIDEBAR_LIST = [
       },
       {
         id: 8,
-        topic: "GraphQL",
-        icon: SiGraphql,
+        topic: "OpenCV",
+        icon: SiOpencv,
         subtopic: [
           {
             id: 1,
             title: "Get started",
             href: "get-started",
-            markdown: null,
-          },
-          {
-            id: 2,
-            title: "Routing Guide",
-            href: "routing-guide",
-            markdown: null,
-          },
-          {
-            id: 3,
-            title: "Middleware Guide",
-            href: "middleware-guide",
-            markdown: null,
-          },
-          {
-            id: 4,
-            title: "Request & Response",
-            href: "request-response",
-            markdown: null,
-          },
-          {
-            id: 5,
-            title: "Deployment Guide",
-            href: "deployment-guide",
-            markdown: null,
+            markdown: OpencvMD.OpencvM1,
           },
         ],
       },
       {
         id: 9,
-        topic: "Firebase",
-        icon: SiNextdotjs,
+        topic: "Streamlit",
+        icon: SiStreamlit,
         subtopic: [
           {
             id: 1,
             title: "Get started",
             href: "get-started",
-            markdown: null,
-          },
-          {
-            id: 2,
-            title: "Routing Guide",
-            href: "routing-guide",
-            markdown: null,
-          },
-          {
-            id: 3,
-            title: "Middleware Guide",
-            href: "middleware-guide",
-            markdown: null,
-          },
-          {
-            id: 4,
-            title: "Request & Response",
-            href: "request-response",
-            markdown: null,
-          },
-          {
-            id: 5,
-            title: "Deployment Guide",
-            href: "deployment-guide",
-            markdown: null,
+            markdown: StreamlitMD.StreamlitM1,
           },
         ],
       },
