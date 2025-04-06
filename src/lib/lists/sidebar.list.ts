@@ -3,7 +3,7 @@ import ExpressMD from "@/markdown/express/index.express";
 import PrismaMD from "@/markdown/prisma/index.prisma";
 import HtmlMD from "@/markdown/html/index.html";
 import CssMD from "@/markdown/css/index.css";
-import NextMD from "@/markdown/nextjs/index.njs";
+import NextMD from "@/markdown/nextjs/index.nextjs";
 import ReactMD from "@/markdown/react/index.react";
 import {
   SiExpress,
@@ -270,31 +270,31 @@ export const LOWER_SIDEBAR_LIST = [
             id: 1,
             title: "Get started",
             href: "get-started",
-            markdown: NextMD.N1,
+            markdown: NextMD.NextjsM1,
           },
           {
             id: 2,
             title: "Routing Guide",
             href: "routing-guide",
-            markdown: NextMD.N2,
+            markdown: NextMD.NextjsM2,
           },
           {
             id: 3,
             title: "API Routes",
             href: "api-routes",
-            markdown: NextMD.N3,  
+            markdown: NextMD.NextjsM3,
           },
           {
             id: 4,
             title: "Data Fetching",
             href: "data-fetching",
-            markdown: NextMD.N4,
+            markdown: NextMD.NextjsM4,
           },
           {
             id: 5,
             title: "Middleware",
             href: "middleware",
-            markdown: NextMD.N5,
+            markdown: NextMD.NextjsM5,
           },
         ],
       },
@@ -320,7 +320,6 @@ export const LOWER_SIDEBAR_LIST = [
             title: "React State",
             href: "react-state",
             markdown: ReactMD.R3,
-
           },
           {
             id: 4,
