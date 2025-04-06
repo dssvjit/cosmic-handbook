@@ -8,6 +8,7 @@ import ReactMD from "@/markdown/react/index.react";
 import DockerMD from "@/markdown/docker/index.docker";
 import OpencvMD from "@/markdown/opencv/index.opencv";
 import StreamlitMD from "@/markdown/streamlit/index.streamlit";
+import PostgresqlMD from "@/markdown/postgresql/index.postgresql";
 
 import {
   SiExpress,
@@ -19,6 +20,7 @@ import {
   SiDocker,
   SiOpencv,
   SiStreamlit,
+  SiPostgresql,
 } from "react-icons/si";
 
 export const UPPER_SIDEBAR_LIST = [
@@ -400,6 +402,31 @@ export const LOWER_SIDEBAR_LIST = [
             title: "Get started",
             href: "get-started",
             markdown: StreamlitMD.StreamlitM1,
+          },
+        ],
+      },
+      {
+        id: 10,
+        topic: "PostgreSQL",
+        icon: SiPostgresql,
+        subtopic: [
+          {
+            id: 1,
+            title: "Get started",
+            href: "get-started",
+            markdown: PostgresqlMD.PostgresqlM1,
+          },
+          {
+            id: 2,
+            title: "CRUD Operations",
+            href: "crud-operations",
+            markdown: PostgresqlMD.PostgresqlM2,
+          },
+          {
+            id: 3,
+            title: "Drivers",
+            href: "database-migrations",
+            markdown: PostgresqlMD.PostgresqlM3,
           },
         ],
       },
