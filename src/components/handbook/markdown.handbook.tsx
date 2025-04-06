@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { MARKDOWN_LIST } from "@/lib/lists/markdown.list";
 
+
 const MarkdownHandbook = () => {
   const { pathname } = useLocation();
   

@@ -1,0 +1,111 @@
+
+# Working with Arrays and Objects
+
+## Arrays
+
+Arrays are used to store multiple values in a single variable.
+
+### Create an Array
+```js
+let fruits = ["apple", "banana", "cherry"];
+```
+
+### Access Elements
+```js
+console.log(fruits[0]); // apple
+```
+
+### Modify Elements
+```js
+fruits[1] = "blueberry";
+```
+
+### Common Array Methods
+
+| Method        | Description                            |
+|---------------|----------------------------------------|
+| `.push()`     | Add item to the end                    |
+| `.pop()`      | Remove last item                       |
+| `.shift()`    | Remove first item                      |
+| `.unshift()`  | Add item to the beginning              |
+| `.length`     | Returns array size                     |
+| `.forEach()`  | Loops through elements                 |
+| `.map()`      | Creates a new array from each element  |
+| `.filter()`   | Filters elements based on a condition  |
+
+### Example:
+```js
+fruits.push("mango");     // Add
+fruits.pop();             // Remove last
+fruits.forEach(fruit => {
+  console.log(fruit);
+});
+```
+
+---
+
+## Objects
+
+Objects store data as key-value pairs.
+
+### Create an Object
+```js
+let person = {
+  name: "Alice",
+  age: 30,
+  city: "New York"
+};
+```
+
+### Access Object Properties
+```js
+console.log(person.name);     // Alice
+console.log(person["age"]);   // 30
+```
+
+### Modify Properties
+```js
+person.city = "San Francisco";
+```
+
+### Add New Property
+```js
+person.country = "USA";
+```
+
+---
+
+## Nesting Arrays and Objects
+
+Objects and arrays can be nested inside each other.
+
+### Example:
+```js
+let post = {
+  title: "Intro to JS",
+  tags: ["javascript", "web", "code"],
+  author: {
+    name: "John Doe",
+    age: 28
+  }
+};
+
+console.log(post.author.name); // John Doe
+console.log(post.tags[1]);     // web
+```
+
+---
+
+## Looping Through Objects
+
+Use a `for...in` loop to iterate over object properties.
+
+```js
+for (let key in person) {
+  console.log(key + ": " + person[key]);
+}
+```
+
+---
+
+Arrays and objects are essential for handling and organizing data in JavaScript. In the next section, we’ll explore more advanced topics like the DOM, events, and ES6 features.

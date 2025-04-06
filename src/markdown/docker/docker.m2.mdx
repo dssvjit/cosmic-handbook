@@ -1,0 +1,174 @@
+# Docker Compose: Running Any Environment Locally
+
+## What is Docker Compose?
+
+Docker Compose is a tool that helps you define and run multi-container Docker applications. Instead of manually running multiple `docker run` commands, you can define all your services (containers), networks, and volumes in a single `docker-compose.yml` file and run everything with just one command:
+
+```sh
+docker-compose up
+```
+
+### Why Use Docker Compose?
+
+Simplifies multi-container applications – Define everything in one file.
+
+- Easy to share & replicate – Just share the docker-compose.yml file.
+- Handles networking automatically – No need to configure ports manually.
+- Supports environment variables – Configure different setups for dev, staging, and production.
+- Reproducibility – Start and stop entire environments with a single command.
+
+### Installing Docker Compose
+
+Docker Compose is included in `Docker Desktop`. You can check if it’s installed by running:
+
+```sh
+docker-compose --version
+```
+
+## Understanding docker-compose.yml
+
+The `docker-compose.yml` file is a configuration file where we define our application’s containers, networks, and volumes. Let’s break down a basic example.
+
+#### Example:
+
+Let's assume we have a Node.js app that needs:
+
+- A web server
+
+- A PostgreSQL database
+
+Instead of running multiple docker run commands, we define everything in one file:
+
+```yml
+version: "3.8"
+
+services:
+  app:
+    image: node:18
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: "node server.js"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
+```
+
+- Terminology:
+
+`version: "3.8"` → Specifies the Docker Compose version.
+
+`services`: → Defines multiple containers.
+
+`app`: → The Node.js application container.
+
+`image: node:18` → Uses the official Node.js image.
+
+`volumes`: → Mounts the current directory to /app in the container.
+
+`working_dir`: → Sets the working directory inside the container.
+
+`command`: → Runs the Node.js server.
+
+`ports`: → Maps port 3000 of the host to port 3000 of the container.
+
+`depends_on`: → Ensures the `db` service starts before the `app` service.
+
+- This file defines two services: `app` (Node.js) and `db` (PostgreSQL). The `app` service depends on the `db` service, ensuring that the database is up before the application starts.
+
+- This when run will create a network for the containers to communicate with each other. And run the app and db containers at ports 3000 and 5432 respectively.
+
+### Running the Containers
+
+To start the entire setup:
+
+```sh
+docker-compose up -d
+```
+
+`-d`: Runs the containers in detached mode (in the background).
+
+To check running containers:
+
+```sh
+docker ps
+```
+
+#### Example Output:
+
+```sh
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS     NAMES
+abcdef123456   nginx     "nginx -g 'daemon of…"   10 seconds ago   Up 9 seconds    80/tcp    pesky_haibt
+```
+
+### Stopping and Removing Containers
+
+To stop all running containers (app and db):
+
+```sh
+docker-compose down
+```
+
+To sto a specific container:
+
+```sh
+docker-compose stop app
+```
+
+### Managing Logs & Debugging
+
+View logs of all running services
+
+```sh
+docker-compose logs -f
+```
+
+`-f`: Follows the logs in real-time.
+
+Check logs for a specific service:
+
+```sh
+docker-compose logs -f app
+```
+
+`-f` -> Follows the logs in real-time.
+
+Restart a single service:
+
+```sh
+docker-compose restart app
+```
+
+### Scaling Services
+
+Want multiple instances of the web server? Scale it up with:
+
+```sh
+docker-compose up --scale app=3 -d
+```
+
+Now 3 containers will run for the app, distributing traffic.
+
+### Conclusion
+
+- Docker Compose makes it easy to manage multiple containers with one command.
+- It ensures consistent environments and allows scaling with minimal effort.
+- It’s essential for local development, CI/CD pipelines, and microservices.
+
+Next: We'll explore how to use docker-compose.yml to run databases like PostgreSQL, MySQL, Redis, and Kafka inside containers.

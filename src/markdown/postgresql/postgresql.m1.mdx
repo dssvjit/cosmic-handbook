@@ -1,0 +1,122 @@
+# Getting Started with PostgreSQL
+
+## Introduction & Why PostgreSQL?
+
+PostgreSQL (often called **Postgres**) is a powerful, open-source, and **highly extensible relational database**. It is known for its **performance, strict SQL compliance, and advanced features** that make it ideal for **enterprise applications, large datasets, and complex queries**.
+
+### Why Choose PostgreSQL Over MySQL?
+
+PostgreSQL provides **better scalability, indexing, and ACID compliance** than MySQL. It is particularly useful when working with **highly relational data**, **complex transactions**, or **large-scale applications**.
+
+## Installation & Setup
+
+To start using PostgreSQL, you first need to install it on your system.
+
+### Option 1: Install PostgreSQL via Installer (GUI Method)
+
+- Visit the official Postgres website:
+
+- Download the installer (provided by **EnterpriseDB**).
+
+- Launch the installer and follow these steps:
+
+  - Select the version and installation directory
+  - Set a password for the default superuser `postgres`
+  - Choose default port: **5432**
+  - Optionally install **pgAdmin**, the graphical interface
+
+- Once installed, launch **pgAdmin** to manage your database visually.
+
+### Option 2: Use Docker (CLI Method)
+
+If you don’t want to install PostgreSQL globally, Docker is a clean and isolated way to run PostgreSQL locally.
+
+#### Step-by-step: PostgreSQL with Docker on Windows
+
+Make sure **Docker Desktop** is installed and running.
+
+#### Step 1: Pull the PostgreSQL Image
+
+```sh
+docker pull postgres
+```
+
+#### Step 2: Start a PostgreSQL Container
+
+```sh
+docker run --name my-postgres \
+  -e POSTGRES_USER=myuser \
+  -e POSTGRES_PASSWORD=mypassword \
+  -e POSTGRES_DB=mydatabase \
+  -p 5432:5432 \
+  -d postgres
+```
+
+`--name`: Gives your container a name (my-postgres)
+
+`-e`: Sets environment variables for user/password/db
+
+`-p`: Maps port 5432 inside the container to your local 5432
+
+`-d`: Runs container in the background (detached)
+
+#### Step 3: Connect to PostgreSQL
+
+```js
+import pg from "pg";
+const { Client } = pg;
+
+const client = new Client({
+  host: "localhost",
+  port: 5432,
+  user: "myuser",
+  password: "mypassword",
+  database: "mydatabase",
+});
+
+client
+  .connect()
+  .then(() => console.log("✅ Connected to PostgreSQL!"))
+  .catch((err) => console.error("❌ Connection error:", err));
+```
+
+`pg`: PostgreSQL client for Node.js
+
+`Client`: Class to create a new client instance
+
+`connect()`: Method to establish a connection to the database
+
+### Option 3: Use docker-compose (Recommended)
+
+If you want to run PostgreSQL with Docker and manage it easily, you can use `docker-compose`. This allows you to define and run multi-container Docker applications.
+
+#### Step 1: Create a `docker-compose.yml` file
+
+```yml
+version: "3.8"
+services:
+  db:
+    image: postgres
+    container_name: my-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+```
+
+#### Step 2: Start PostgreSQL with Docker Compose
+
+```sh
+docker-compose up -d
+```
+
+## What's Next?
+
+Now that you have PostgreSQL up and running, you can start creating databases, tables, and executing queries. You can also explore advanced features like **JSONB support**, **full-text search**, and **geospatial data** with PostGIS.

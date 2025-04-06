@@ -13,7 +13,6 @@ We'll merge to `main` through approved internal workflows.
 1. **Read the README** to understand the purpose and setup of this repo.
 2. Check the **open issues** to see if someone else is already working on what you want to contribute.
 
-
 ## 🚀 Getting Started
 
 ### 1. **Fork** the repository
@@ -57,13 +56,11 @@ git push origin your-feature-name
 3. Write a well structure description for your PR in .md format
 4. Be patient — someone from the team will review and provide feedback
 
-
 ## ✍️ Code Style
 
 - Use consistent naming and formatting.
 - Follow the existing project structure.
 - Run linter/formatter:
-
 
 ## Thank You!
 
