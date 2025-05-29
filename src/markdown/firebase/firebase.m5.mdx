@@ -1,0 +1,83 @@
+# Firebase Hosting
+
+## Overview
+
+This guide walks you through deploying a React app using Firebase Hosting — including initialization, build, and deployment.
+
+<br></br>
+---
+<br></br>
+## 🛠️ Prerequisites
+
+- Node.js installed
+- A React Project
+- Firebase CLI installed globally
+  ```bash
+  npm install -g firebase-tools
+- Firebase project created at [Firebase Console](https://console.firebase.google.com/)
+- GitHub account (optional for auto-deploy)
+
+## 1. 📁 Project Setup
+
+Make sure you're in the root of your React app (e.g., Vite or Create React App).
+
+#### For Vite
+```bash
+npm run build
+# Output will be in the 'dist' folder
+```
+
+#### For CRA
+```bash
+npm run build
+# Output will be in the 'build' folder
+```
+
+## 2. 🔧 Initialize Firebase in Your Project
+
+Run the following command in the project root:
+
+```bash
+firebase init
+```
+Then follow the prompts:
+
+- **Select Firebase features** → Choose:  
+  ✅ Hosting: Configure files for Firebase Hosting
+
+- **Project setup**  
+  Choose: Use an existing project
+
+- **Select your Firebase project**
+
+- **Public directory**  
+  - For Vite: `dist`  
+  - For CRA: `build`
+
+- **Single-page app rewrite?**  
+  → ✅ Yes
+
+- **Overwrite index.html?**  
+  → ❌ No
+
+- **Set up GitHub Actions?**  
+  → Optional: `n` (You can enable later via `firebase init hosting:github`)
+
+## 3. 🚀 Deploy to Firebase
+
+After building your app:
+```bash
+npm run build
+firebase deploy
+```
+You’ll get a URL like:
+```
+https://your-project-id.web.app
+```
+
+## 4. 🔄 Re-deploying after changes
+Each time you update your app:
+```bash
+npm run build
+firebase deploy
+```

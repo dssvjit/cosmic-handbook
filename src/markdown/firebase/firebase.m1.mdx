@@ -1,0 +1,72 @@
+# Getting Started with Firebase
+
+## What is Firebase?
+
+Firebase is a platform developed by Google for building and managing mobile and web apps. It offers tools like real-time databases, authentication, hosting, and analytics — allowing developers to build full-stack apps quickly without managing backend infrastructure.
+
+### Why Use Firebase?
+
+- **Backend as a Service** – Offers ready-to-use tools for authentication, databases, and more.
+- **Real-time Support** – Sync data in real time across devices.
+- **Cross-Platform** – Works for Android, iOS, Web, and more.
+- **Secure & Scalable** – Easily scale your app and manage permissions using Firebase Rules.
+- **Quick Setup** – Fast integration with SDKs and intuitive dashboard.
+<br></br>
+---
+<br></br>
+# Firebase for Web Applications
+
+## Step-by-Step Setup
+
+### 1. Create a Firebase Project
+
+- Go to the [Firebase Console](https://console.firebase.google.com).
+- Click **Add project**.
+- Name your project and click **Continue**.
+- (Optional) Enable Google Analytics, then click **Create project**.
+- Once the project is ready, click **Continue**.
+
+### 2. Register Your Web App
+
+- From the Firebase dashboard, click the **Web icon** ( `</>` ) to register a new app.
+- Enter a nickname for your app and click **Register app**.
+- Firebase will now display a configuration snippet (keep this safe — you'll use it in your web applications).
+
+### 3. Install Firebase SDK
+
+Install Firebase in your project directory via npm:
+
+```sh
+npm install firebase
+```
+
+### 4. Initialize Firebase in Your App
+
+Import and initialize Firebase with your config by creating a *firebaseConfig.js* file in your project's src folder:
+#### `firebaseConfig.js`
+```js
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "your-api-key",
+  authDomain: "your-auth-domain",
+  projectId: "your-project-id",
+  storageBucket: "your-storage-bucket",
+  messagingSenderId: "your-sender-id",
+  appId: "your-app-id",
+};
+
+const app = initializeApp(firebaseConfig);
+```
+
+You can now use Firebase features like Auth, Firestore, or Storage from your frontend.
+
+### 5. Run Your App
+
+If you're using Node.js:
+
+```sh
+node your-file.js
+```
+
+Or if you're building a frontend app (React, Vue, etc.), run your development server as usual — Firebase runs entirely on the frontend.

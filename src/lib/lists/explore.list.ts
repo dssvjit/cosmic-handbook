@@ -16,6 +16,7 @@ import {
   SiHiveBlockchain,
   SiPrisma,
   SiFigma,
+  SiFirebase
 } from "react-icons/si";
 import { MdOutlineDeveloperMode } from "react-icons/md";
 
@@ -191,4 +192,14 @@ export const EXPLORE_LIST = [
     gradient: ["from-[#F24E1E]", "to-[#A259FF]"],
     categories: ["design", "ui/ux"],
   },
+  {
+    id: 17,
+    name: "Firebase",
+    description: "Firebase is a platform developed by Google for creating mobile and web applications.",
+    docs: "Use Firebase for real-time databases, authentication, hosting, and more.",
+    icon: SiFirebase,
+    color: "#FFCA28",
+    gradient: ["from-[#FFCA28]", "to-[#F44336]"],
+    categories: ["database", "fullstack", "backend"],
+  }
 ];
