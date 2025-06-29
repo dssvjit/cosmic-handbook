@@ -9,6 +9,7 @@ import DockerMD from "@/markdown/docker/index.docker";
 import OpencvMD from "@/markdown/opencv/index.opencv";
 import StreamlitMD from "@/markdown/streamlit/index.streamlit";
 import PostgresqlMD from "@/markdown/postgresql/index.postgresql";
+import FirebaseMD from "@/markdown/firebase/index.firebase";
 
 import {
   SiExpress,
@@ -21,6 +22,7 @@ import {
   SiOpencv,
   SiStreamlit,
   SiPostgresql,
+  SiFirebase
 } from "react-icons/si";
 
 export const UPPER_SIDEBAR_LIST = [
@@ -430,6 +432,43 @@ export const LOWER_SIDEBAR_LIST = [
           },
         ],
       },
+      {
+        id: 11,
+        topic: "Firebase",
+        icon: SiFirebase,
+        subtopic: [
+          {
+            id: 1,
+            title: "Get started - Web",
+            href: "get-started-web",
+            markdown: FirebaseMD.FirebaseM1,
+          },
+          {
+            id: 2,
+            title: "Get started - Android",
+            href: "get-started-android",
+            markdown: FirebaseMD.FirebaseM2,
+          },
+          {
+            id: 3,
+            title: "Firebase Authentication",
+            href: "firebase-authentication",
+            markdown: FirebaseMD.FirebaseM3,
+          },
+          {
+            id: 4,
+            title: "Firestore Database",
+            href: "firestore-database",
+            markdown: FirebaseMD.FirebaseM4,
+          },
+          {
+            id: 5,
+            title: "Firebase Hosting",
+            href: "firebase-hosting",
+            markdown: FirebaseMD.FirebaseM5,
+          }
+        ],
+      }
     ],
   },
 ];
