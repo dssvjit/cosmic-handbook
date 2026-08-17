@@ -1,0 +1,122 @@
+# Handling Events in React
+
+## What are Events in React?
+
+Events in React work similarly to native DOM events, but they follow **synthetic event handling**, which ensures consistent behavior across different browsers.
+
+## Handling Click Events
+
+You can handle user interactions by attaching event listeners to elements.
+
+### Example:
+
+```jsx
+function Button() {
+  function handleClick() {
+    alert("Button Clicked!");
+  }
+
+  return <button onClick={handleClick}>Click Me</button>;
+}
+```
+
+- `onClick={handleClick}` attaches the function to the button.
+- The function **does not use parentheses** (`handleClick()`), otherwise, it would run immediately.
+
+## Passing Arguments to Event Handlers
+
+To pass arguments to an event handler, use an arrow function.
+
+### Example:
+
+```jsx
+function Greeting({ name }) {
+  function handleClick(message) {
+    alert(`Hello, ${name}! ${message}`);
+  }
+
+  return <button onClick={() => handleClick("Welcome to React!")}>Say Hi</button>;
+}
+```
+
+- `onClick={() => handleClick("Welcome to React!")}` passes an argument to the function.
+
+## Event Object in React
+
+React provides an **event object** that contains details about the event.
+
+### Example:
+
+```jsx
+function InputBox() {
+  function handleChange(event) {
+    console.log("Typed Value:", event.target.value);
+  }
+
+  return <input type="text" onChange={handleChange} />;
+}
+```
+
+- `event.target.value` captures the text input.
+
+## Preventing Default Behavior
+
+Like in JavaScript, `event.preventDefault()` prevents the default behavior of an event.
+
+### Example:
+
+```jsx
+function Form() {
+  function handleSubmit(event) {
+    event.preventDefault();
+    alert("Form submitted!");
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+- The form **won't refresh the page** because of `event.preventDefault()`.
+
+## Event Binding in Class Components
+
+In class components, event handlers must be bound to `this`.
+
+### Example:
+
+```jsx
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+    this.increment = this.increment.bind(this);
+  }
+
+  increment() {
+    this.setState({ count: this.state.count + 1 });
+  }
+
+  render() {
+    return (
+      <button onClick={this.increment}>Count: {this.state.count}</button>
+    );
+  }
+}
+```
+
+- `this.increment = this.increment.bind(this);` ensures `this` refers to the class instance.
+
+## Summary
+
+| Concept                 | Example |
+|-------------------------|---------|
+| **Handling Clicks** | `onClick={handleClick}` |
+| **Passing Arguments** | `onClick={() => handleClick(arg)}` |
+| **Event Object** | `event.target.value` |
+| **Prevent Default** | `event.preventDefault()` |
+| **Event Binding (Class Components)** | `this.handler = this.handler.bind(this);` |
+

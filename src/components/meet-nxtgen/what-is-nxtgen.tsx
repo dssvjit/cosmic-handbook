@@ -4,7 +4,7 @@ import { FRAMEWORK_LIST } from "@/lib/lists/framework.list";
 const WhatIsNxtgen = () => {
   return (
     <main className="w-full h-full flex flex-col justify-start items-center mt-[55px] overflow-auto p-10 space-y-12">
-      <div className="flex flex-col justify-start items-start gap-8 w-11/12">
+      <div className="flex flex-col justify-start items-start gap-8 md:w-11/12">
         <div className="w-full flex flex-col justify-start items-start gap-1">
           <h3 className="text-3xl font-semibold tracking-tight text-app-primary-dark">
             What is Nxtgen?
@@ -19,7 +19,7 @@ const WhatIsNxtgen = () => {
             in development practices and architecture.
           </p>
         </div>
-        <ul className="w-full grid grid-cols-2 md:grid-cols-3 gap-2">
+        <ul className="w-full grid grid-cols-1 md:grid-cols-3 gap-2">
           {FEATURE_LIST.map((feature) => {
             const Icon = feature.icon;
             return (
@@ -51,13 +51,10 @@ const WhatIsNxtgen = () => {
             Explore by frameworks
           </h3>
           <p className="text-sm text-app-secondary-dark tracking-tight">
-            Nxtgen is your go-to platform for mastering the latest in web
-            development technologies. Whether you're a beginner or an
-            experienced developer, you'll find everything you need to enhance
-            your skills with comprehensive documentation, guides, and hands-on
-            tutorials. Using Nxtgen, you can quickly grasp core concepts of
-            modern tech stacks and frameworks, while gaining a strong foundation
-            in development practices and architecture.
+            Nxtgen provides a comprehensive overview of popular frameworks and
+            libraries, including React, Next and more. Each framework section
+            includes in-depth documentation, tutorials, and examples to help you
+            get started quickly and effectively.
           </p>
         </div>
         <ul className="w-full grid grid-cols-2 md:grid-cols-3 gap-2">

@@ -3,6 +3,14 @@ import ExpressMD from "@/markdown/express/index.express";
 import PrismaMD from "@/markdown/prisma/index.prisma";
 import HtmlMD from "@/markdown/html/index.html";
 import CssMD from "@/markdown/css/index.css";
+import NextMD from "@/markdown/nextjs/index.nextjs";
+import ReactMD from "@/markdown/react/index.react";
+import DockerMD from "@/markdown/docker/index.docker";
+import OpencvMD from "@/markdown/opencv/index.opencv";
+import StreamlitMD from "@/markdown/streamlit/index.streamlit";
+import PostgresqlMD from "@/markdown/postgresql/index.postgresql";
+import FirebaseMD from "@/markdown/firebase/index.firebase";
+
 import {
   SiExpress,
   SiHtml5,
@@ -11,7 +19,10 @@ import {
   SiCss3,
   SiNextdotjs,
   SiDocker,
-  SiGraphql,
+  SiOpencv,
+  SiStreamlit,
+  SiPostgresql,
+  SiFirebase
 } from "react-icons/si";
 
 export const UPPER_SIDEBAR_LIST = [
@@ -108,31 +119,31 @@ export const LOWER_SIDEBAR_LIST = [
             id: 1,
             title: "Getting Started",
             href: "getting-started",
-            markdown: CssMD.MD1,
+            markdown: CssMD.CssM1,
           },
           {
             id: 2,
             title: "Selectors & Properties",
             href: "selectors-properties",
-            markdown: CssMD.MD2,
+            markdown: CssMD.CssM2,
           },
           {
             id: 3,
             title: "Box Model & layouts",
             href: "box-model-layouts",
-            markdown: CssMD.MD3,
+            markdown: CssMD.CssM3,
           },
           {
             id: 4,
             title: "Grid & Responsive Design",
             href: "grid-responsive-design",
-            markdown: CssMD.MD4,
+            markdown: CssMD.CssM4,
           },
           {
             id: 5,
             title: "Animations & Transitions",
             href: "animations-transitions",
-            markdown: CssMD.MD5,
+            markdown: CssMD.CssM5,
           },
         ],
       },
@@ -268,31 +279,31 @@ export const LOWER_SIDEBAR_LIST = [
             id: 1,
             title: "Get started",
             href: "get-started",
-            markdown: null,
+            markdown: NextMD.NextjsM1,
           },
           {
             id: 2,
             title: "Routing Guide",
             href: "routing-guide",
-            markdown: null,
+            markdown: NextMD.NextjsM2,
           },
           {
             id: 3,
-            title: "Middleware Guide",
-            href: "middleware-guide",
-            markdown: null,
+            title: "API Routes",
+            href: "api-routes",
+            markdown: NextMD.NextjsM3,
           },
           {
             id: 4,
-            title: "Request & Response",
-            href: "request-response",
-            markdown: null,
+            title: "Data Fetching",
+            href: "data-fetching",
+            markdown: NextMD.NextjsM4,
           },
           {
             id: 5,
-            title: "Deployment Guide",
-            href: "deployment-guide",
-            markdown: null,
+            title: "Middleware",
+            href: "middleware",
+            markdown: NextMD.NextjsM5,
           },
         ],
       },
@@ -303,33 +314,33 @@ export const LOWER_SIDEBAR_LIST = [
         subtopic: [
           {
             id: 1,
-            title: "Get started",
+            title: "Get Started",
             href: "get-started",
-            markdown: null,
+            markdown: ReactMD.ReactM1,
           },
           {
             id: 2,
-            title: "Routing Guide",
-            href: "routing-guide",
-            markdown: null,
+            title: "React Props",
+            href: "react-props",
+            markdown: ReactMD.ReactM2,
           },
           {
             id: 3,
-            title: "Middleware Guide",
-            href: "middleware-guide",
-            markdown: null,
+            title: "React State",
+            href: "react-state",
+            markdown: ReactMD.ReactM3,
           },
           {
             id: 4,
-            title: "Request & Response",
-            href: "request-response",
-            markdown: null,
+            title: "Events in React",
+            href: "events-in-react",
+            markdown: ReactMD.ReactM4,
           },
           {
             id: 5,
-            title: "Deployment Guide",
-            href: "deployment-guide",
-            markdown: null,
+            title: "Refs and DOM",
+            href: "refs-and-dom",
+            markdown: ReactMD.ReactM5,
           },
         ],
       },
@@ -340,110 +351,124 @@ export const LOWER_SIDEBAR_LIST = [
         subtopic: [
           {
             id: 1,
-            title: "Get started",
-            href: "get-started",
-            markdown: null,
+            title: "Introduction",
+            href: "introduction",
+            markdown: DockerMD.DockerM1,
           },
           {
             id: 2,
-            title: "Routing Guide",
-            href: "routing-guide",
-            markdown: null,
+            title: "Docker Compose",
+            href: "docker-compose",
+            markdown: DockerMD.DockerM2,
           },
           {
             id: 3,
-            title: "Middleware Guide",
-            href: "middleware-guide",
-            markdown: null,
+            title: "Running Services",
+            href: "running-services",
+            markdown: DockerMD.DockerM3,
           },
           {
             id: 4,
-            title: "Request & Response",
-            href: "request-response",
-            markdown: null,
+            title: "Making Containers",
+            href: "making-containers",
+            markdown: DockerMD.DockerM4,
           },
           {
             id: 5,
             title: "Deployment Guide",
             href: "deployment-guide",
-            markdown: null,
+            markdown: DockerMD.DockerM5,
           },
         ],
       },
       {
         id: 8,
-        topic: "GraphQL",
-        icon: SiGraphql,
+        topic: "OpenCV",
+        icon: SiOpencv,
         subtopic: [
           {
             id: 1,
             title: "Get started",
             href: "get-started",
-            markdown: null,
-          },
-          {
-            id: 2,
-            title: "Routing Guide",
-            href: "routing-guide",
-            markdown: null,
-          },
-          {
-            id: 3,
-            title: "Middleware Guide",
-            href: "middleware-guide",
-            markdown: null,
-          },
-          {
-            id: 4,
-            title: "Request & Response",
-            href: "request-response",
-            markdown: null,
-          },
-          {
-            id: 5,
-            title: "Deployment Guide",
-            href: "deployment-guide",
-            markdown: null,
+            markdown: OpencvMD.OpencvM1,
           },
         ],
       },
       {
         id: 9,
-        topic: "Firebase",
-        icon: SiNextdotjs,
+        topic: "Streamlit",
+        icon: SiStreamlit,
         subtopic: [
           {
             id: 1,
             title: "Get started",
             href: "get-started",
-            markdown: null,
-          },
-          {
-            id: 2,
-            title: "Routing Guide",
-            href: "routing-guide",
-            markdown: null,
-          },
-          {
-            id: 3,
-            title: "Middleware Guide",
-            href: "middleware-guide",
-            markdown: null,
-          },
-          {
-            id: 4,
-            title: "Request & Response",
-            href: "request-response",
-            markdown: null,
-          },
-          {
-            id: 5,
-            title: "Deployment Guide",
-            href: "deployment-guide",
-            markdown: null,
+            markdown: StreamlitMD.StreamlitM1,
           },
         ],
       },
+      {
+        id: 10,
+        topic: "PostgreSQL",
+        icon: SiPostgresql,
+        subtopic: [
+          {
+            id: 1,
+            title: "Get started",
+            href: "get-started",
+            markdown: PostgresqlMD.PostgresqlM1,
+          },
+          {
+            id: 2,
+            title: "CRUD Operations",
+            href: "crud-operations",
+            markdown: PostgresqlMD.PostgresqlM2,
+          },
+          {
+            id: 3,
+            title: "Drivers",
+            href: "database-migrations",
+            markdown: PostgresqlMD.PostgresqlM3,
+          },
+        ],
+      },
+      {
+        id: 11,
+        topic: "Firebase",
+        icon: SiFirebase,
+        subtopic: [
+          {
+            id: 1,
+            title: "Get started - Web",
+            href: "get-started-web",
+            markdown: FirebaseMD.FirebaseM1,
+          },
+          {
+            id: 2,
+            title: "Get started - Android",
+            href: "get-started-android",
+            markdown: FirebaseMD.FirebaseM2,
+          },
+          {
+            id: 3,
+            title: "Firebase Authentication",
+            href: "firebase-authentication",
+            markdown: FirebaseMD.FirebaseM3,
+          },
+          {
+            id: 4,
+            title: "Firestore Database",
+            href: "firestore-database",
+            markdown: FirebaseMD.FirebaseM4,
+          },
+          {
+            id: 5,
+            title: "Firebase Hosting",
+            href: "firebase-hosting",
+            markdown: FirebaseMD.FirebaseM5,
+          }
+        ],
+      }
     ],
   },
 ];

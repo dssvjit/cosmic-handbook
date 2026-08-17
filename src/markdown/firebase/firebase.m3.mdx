@@ -1,0 +1,371 @@
+# Firebase Authentication
+
+## Overview
+
+Firebase Authentication allows you to quickly set up secure sign-in flows in your React app. We'll cover how to use **Email/Password Authentication**, integrate Firebase Auth into your React components, and manage user state effectively.
+In this page, We will create a project with Firebase Authentication and Vite React
+<br></br>
+---
+<br></br>
+
+## Step-by-Step Setup
+
+### 1. Set Up Your Firebase Project
+
+Make sure you have a Firebase project ready. If not, follow the steps in the **Getting Started** section to create one and register your web app.
+
+### 2. Enable Email/Password Authentication
+
+- Go to the [Firebase Console](https://console.firebase.google.com).
+- Select your project > **Authentication** > **Sign-in method**.
+- Enable **Email/Password**, then click **Save**.
+
+### 3. Create a React App (if not already)
+
+```sh
+npm create vite@latest my-firebase-auth-app
+cd my-firebase-auth-app
+npm install firebase react-router-dom tailwindcss @tailwindcss/vite
+```
+### 4. Configure Tailwind CSS for Vite React
+
+#### `vite.config.js`
+```js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [react(),
+    tailwindcss(),
+  ],
+})
+```
+
+#### `src/index.css`
+```css
+@import "tailwindcss";
+```
+
+### 5. Set Up Firebase Configuration
+
+Create a file called `firebaseConfig.js` in your `src` directory:
+
+#### `src/firebaseConfig.js`
+
+```js
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+
+const firebaseConfig = {
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  };
+
+  const app = initializeApp(firebaseConfig);
+
+  const auth = getAuth(app);
+  
+  export { auth };
+```
+
+#### Create a file called `.env` in the project root directory, and place the API keys in the following format
+```bash
+VITE_FIREBASE_API_KEY=YOUR_API_KEY
+VITE_FIREBASE_AUTH_DOMAIN=YOUR_AUTH_DOMAIN
+VITE_FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
+VITE_FIREBASE_STORAGE_BUCKET=YOUR_STORAGE_BUCKET_ID
+VITE_FIREBASE_MESSAGING_SENDER_ID=YOUR_MESSAGING_ID
+VITE_FIREBASE_APP_ID=YOUR_APP_ID
+```
+
+#### Make sure to add the `.env` file directory in `.gitignore` file.
+```bash
+.env
+```
+
+### 6. Create Pages
+
+#### `src/pages/Signup.jsx`
+
+```jsx
+import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebaseConfig";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext";
+
+export default function Signup() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const { currentUser } = useAuth();
+
+  if (currentUser) {
+    navigate("/dashboard");
+    return null;
+  }
+
+  const handleSignUp = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        navigate("/dashboard");
+      })
+      .catch(err => alert(err.message));
+  };
+
+  return (
+    <div className="min-h-screen flex justify-center items-center bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
+        <h1 className="text-2xl font-semibold text-center mb-6">Sign Up</h1>
+        <input
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          className="w-full p-2 mb-4 border border-gray-300 rounded-lg"
+        />
+        <input
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          className="w-full p-2 mb-6 border border-gray-300 rounded-lg"
+        />
+        <button
+          onClick={handleSignUp}
+          className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition"
+        >
+          Sign Up
+        </button>
+      </div>
+    </div>
+  );
+}
+```
+
+#### `src/pages/Login.jsx`
+
+```jsx
+import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebaseConfig";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext";
+
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const { currentUser } = useAuth();
+
+  if (currentUser) {
+    navigate("/dashboard");
+    return null;
+  }
+
+  const handleSignIn = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        navigate("/dashboard");
+      })
+      .catch(err => alert(err.message));
+  };
+
+  return (
+    <div className="min-h-screen flex justify-center items-center bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
+        <h1 className="text-2xl font-semibold text-center mb-6">Login</h1>
+        <input
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          className="w-full p-2 mb-4 border border-gray-300 rounded-lg"
+        />
+        <input
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          className="w-full p-2 mb-6 border border-gray-300 rounded-lg"
+        />
+        <button
+          onClick={handleSignIn}
+          className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
+        >
+          Sign In
+        </button>
+      </div>
+    </div>
+  );
+}
+```
+
+#### `src/pages/Home.jsx`
+```jsx
+import { Link } from "react-router-dom";
+import { useAuth } from "../AuthContext";
+
+export default function Home() {
+  const { currentUser } = useAuth();
+
+  return (
+    <div className="min-h-screen flex justify-center items-center bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full text-center">
+        <h1 className="text-2xl font-semibold mb-6">Welcome to Firebase Authentication</h1>
+
+        {currentUser ? (
+          <Link
+            to="/dashboard"
+            className="block bg-green-500 text-white py-2 rounded-lg mb-4 hover:bg-green-600 transition"
+          >
+            Go to Dashboard
+          </Link>
+        ) : (
+          <>
+            <Link
+              to="/login"
+              className="block bg-blue-500 text-white py-2 rounded-lg mb-4 hover:bg-blue-600 transition"
+            >
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className="block bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition"
+            >
+              Sign Up
+            </Link>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+```
+#### `src/pages/Dashboard.jsx`
+```jsx
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext";
+import { auth } from "../firebaseConfig";
+import { signOut } from "firebase/auth";
+
+export default function Dashboard() {
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
+
+  if (!currentUser) {
+    navigate("/login");
+    return null;
+  }
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error signing out: ", error);
+      });
+  };
+
+  return (
+    <div className="min-h-screen flex justify-center items-center bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full text-center">
+        <h1 className="text-2xl font-semibold mb-6">Dashboard</h1>
+        <p className="mb-4">You are logged in as {currentUser.email}</p>
+        <button
+          onClick={handleSignOut}
+          className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition"
+        >
+          Sign Out
+        </button>
+      </div>
+    </div>
+  );
+}
+```
+
+### 7. Track Authentication State
+
+You can use `onAuthStateChanged` in a global state manager or context to track if a user is logged in.
+
+#### `src/AuthContext.jsx` (optional but recommended)
+
+```jsx
+import React, { createContext, useState, useEffect, useContext } from "react";
+import { auth } from "./firebaseConfig"; // Firebase authentication instance
+import { onAuthStateChanged } from "firebase/auth";
+
+// Create an AuthContext
+const AuthContext = createContext();
+
+// AuthProvider to wrap the app and provide auth state
+export function AuthProvider({ children }) {
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, setCurrentUser);
+    return () => unsubscribe(); // Clean up subscription on unmount
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ currentUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+// Custom hook to use the Auth context
+export function useAuth() {
+  return useContext(AuthContext);
+}
+```
+Wrap your app with `AuthProvider` in `main.jsx`:
+
+#### `main.jsx`
+
+```jsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import './index.css'
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
+```
+
+You can now access the authenticated user from any component using `useContext`.
+
+#### Example usage in `App.jsx`
+
+```jsx
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
+import { AuthProvider } from "./AuthContext";
+
+function App() {
+  return (
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </AuthProvider>
+  );
+}
+
+export default App;
+```
+
+#### [Click here to redirect to Firebase Authentication Template with Vite React](https://github.com/VJLIVE/Vite-React-Firebase-Auth-Template)

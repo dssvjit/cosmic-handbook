@@ -1,0 +1,99 @@
+# Next.js API Routes
+
+## Introduction to API Routes
+
+Next.js allows you to create **backend API routes** inside the `pages/api/` directory. These routes can be used to handle requests, interact with databases, and perform server-side logic.
+
+## Creating an API Route
+
+To create an API route, add a file inside `pages/api/`. The filename determines the endpoint URL.
+
+#### Example:
+Create `pages/api/hello.js`:
+
+```jsx
+export default function handler(req, res) {
+  res.status(200).json({ message: "Hello from Next.js API!" });
+}
+```
+
+Now, visiting `http://localhost:3000/api/hello` will return:
+
+```json
+{
+  "message": "Hello from Next.js API!"
+}
+```
+
+## Handling Different HTTP Methods
+
+You can handle different request methods inside your API routes.
+
+#### Example:
+Create `pages/api/user.js`:
+
+```jsx
+export default function handler(req, res) {
+  if (req.method === "GET") {
+    res.status(200).json({ user: "John Doe" });
+  } else if (req.method === "POST") {
+    res.status(201).json({ message: "User Created" });
+  } else {
+    res.status(405).json({ message: "Method Not Allowed" });
+  }
+}
+```
+
+## Dynamic API Routes
+
+API routes can also be **dynamic** by using `[param]` syntax.
+
+#### Example:
+Create `pages/api/user/[id].js`:
+
+```jsx
+export default function handler(req, res) {
+  const { id } = req.query;
+  res.status(200).json({ userId: id });
+}
+```
+
+Now, visiting `http://localhost:3000/api/user/123` will return:
+
+```json
+{
+  "userId": "123"
+}
+```
+
+## Using API Routes with Fetch
+
+You can call API routes from frontend components using `fetch()`.
+
+#### Example:
+
+```jsx
+export default function Home() {
+  async function fetchUser() {
+    const res = await fetch("/api/user");
+    const data = await res.json();
+    console.log(data);
+  }
+
+  return (
+    <div>
+      <h1>Next.js API Routes</h1>
+      <button onClick={fetchUser}>Fetch User</button>
+    </div>
+  );
+}
+```
+
+## Summary
+
+- **API routes live inside `pages/api/`**.
+- **Dynamic API routes** can be created using `[param]`.
+- **Different HTTP methods** (GET, POST, etc.) can be handled inside API handlers.
+- API routes are useful for **database operations, authentication, and external API communication**.
+
+

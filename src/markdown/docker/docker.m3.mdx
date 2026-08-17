@@ -1,0 +1,192 @@
+# Running Databases and Services Using Docker Compose
+
+In this module, you'll learn how to use **Docker Compose** to quickly spin up essential services like databases (PostgreSQL, MySQL), caching systems (Redis), and event brokers (Kafka) — all without installing them on your system directly.
+
+## Why Use Docker Compose for Services?
+
+- **Fast Setup** – No need to install databases manually.
+- **Clean System** – Everything is isolated in containers.
+- **Repeatable Environments** – Share the same config across teams.
+- **Network Ready** – Services can talk to each other easily within Docker's internal network.
+
+## Example 1: PostgreSQL
+
+A simple `docker-compose.yml` to run PostgreSQL locally:
+
+```yml
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: local_postgres // Can be any name you want
+    environment:
+      POSTGRES_USER: dss_user      // Change to your desired username
+      POSTGRES_PASSWORD: strongpassword // Change to your desired password
+      POSTGRES_DB: dss_db       // Change to your desired database name
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+```
+
+#### Accessing it:
+
+`DB host`: localhost
+
+`Port`: 5432
+
+`Username`: dss_user
+
+`Password`: strongpassword
+
+`Database name`: dss_db
+
+Use it with Prisma, pgAdmin, or any backend app via .env.
+
+## Example 2: MySQL
+
+A simple `docker-compose.yml` to run PostgreSQL locally:
+
+```yml
+services:
+  mysql:
+    image: mysql:8
+    container_name: local_mysql  // Can be any name you want
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass // Change to your desired root password
+      MYSQL_DATABASE: dss_db    // Change to your desired database name
+      MYSQL_USER: dss_user   // Change to your desired username
+      MYSQL_PASSWORD: userpass   // Change to your desired password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+```
+
+#### Accessing it:
+
+`DB host`: localhost
+
+`Port`: 3306
+
+`Username`: dss_user
+
+`Password`: userpass
+
+`Database name`: dss_db
+
+Use it with Prisma, pgAdmin, or any backend app via .env.
+
+## Example 3: Redis
+
+A simple `docker-compose.yml` to run Redis locally:
+
+```yml
+version: "3.8"
+
+services:
+  redis:
+    image: redis:latest
+    container_name: local_redis // Can be any name you want
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+```
+
+Redis is super lightweight — no setup needed.
+
+You can connect to it using tools like Redis Insight, or libraries like ioredis in Node.js.
+
+## Example 4: Kafka + Zookeeper (for Event Streaming)
+
+Kafka needs Zookeeper to run. Here's the setup:
+
+```yml
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181   // Port for Zookeeper client connections
+      ZOOKEEPER_TICK_TIME: 2000    // Tick time in milliseconds
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181               // Connect to Zookeeper
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092   // Advertised listener for clients
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1     // Replication factor for offsets topic
+```
+
+Kafka uses port `9092`, Zookeeper runs on `2181`
+
+This setup is great for local testing if you're building microservices or pub/sub pipelines.
+
+## Running the Compose File
+
+Once you’ve created a `docker-compose.yml` file:
+
+```sh
+docker-compose up -d
+```
+
+- `-d` runs the services in the background.
+
+- You can stop it anytime with:
+
+```sh
+docker-compose down
+```
+
+This stops and removes the containers, but not the named volumes (unless you add `-v`).
+
+## Pro Tips
+
+- Use .env files to avoid hardcoding secrets (Docker Compose supports them).
+
+- Use unique container names to avoid conflicts.
+
+- You can combine multiple services in one file for full-stack environments.
+
+### To use `.env` variables in your `docker-compose.yml`:
+
+```yml
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: local_postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+```
+
+Then create a `.env` file in the same directory:
+
+```sh
+POSTGRES_USER = dss_user;
+POSTGRES_PASSWORD = strongpassword;
+POSTGRES_DB = dss_db;
+```
+
+This way, you can easily change the environment variables without modifying the `docker-compose.yml` file.

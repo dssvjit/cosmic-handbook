@@ -1,0 +1,83 @@
+# Getting Started with React.js
+
+## What is React?
+
+React is a **JavaScript library for building user interfaces**. It allows developers to create reusable UI components that efficiently update when data changes.
+
+## Why Use React?
+
+- **Component-Based:** UI is built using reusable components.
+- **Declarative:** Describe how the UI should look, and React updates it automatically.
+- **Fast and Efficient:** Uses a virtual DOM for optimized rendering.
+- **Rich Ecosystem:** Works with libraries like Redux, React Router, and Next.js.
+
+## Setting Up a React Project
+
+The easiest way to start a React project is by using Vite.
+
+### Install Vite:
+
+```sh
+npm create vite@latest my-app --template react
+```
+
+Then install dependencies:
+
+```sh
+cd my-app
+npm install
+```
+
+Start the development server:
+
+```sh
+npm run dev
+```
+
+## Creating Your First Component
+
+React apps are built using **components**. Here’s a simple example:
+
+#### `App.jsx`
+
+```jsx
+function App() {
+  return <h1>Hello, React!</h1>;
+}
+
+export default App;
+```
+
+## JSX: JavaScript + XML
+
+React uses JSX, which allows writing HTML inside JavaScript.
+
+```jsx
+const element = <h1>Welcome to React!</h1>;
+```
+
+JSX gets converted to standard JavaScript:
+
+```js
+const element = React.createElement("h1", null, "Welcome to React!");
+```
+
+## Rendering Components
+
+Components are rendered inside `index.js`:
+
+```jsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+```
+
+## Summary
+
+- React is a **component-based** UI library.
+- Uses **JSX** for writing HTML in JavaScript.
+- A React app is created using **Vite or Create React App**.
+- Components are rendered inside `index.js`.

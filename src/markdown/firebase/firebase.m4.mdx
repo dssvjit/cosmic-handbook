@@ -1,0 +1,225 @@
+# Firestore Database (Firebase)
+
+## Overview
+
+Cloud Firestore is a flexible, scalable NoSQL database from Firebase. It stores the data in json format, in other words (key-value pairs)
+In this page, We will create a project with Firestore Database and Vite React
+<br></br>
+---
+<br></br>
+
+## Step-by-Step Setup
+
+### 1. Set Up Your Firebase Project
+
+Make sure you have a Firebase project ready. If not, follow the steps in the **Getting Started** section to create one and register your web app.
+
+### 2. Enable Firestore Database
+
+- Go to the [Firebase Console](https://console.firebase.google.com).
+- Select your project > **Firestore Database** > **Create Database** > **Next** > **Select Test Mode** > **Create**.
+
+### 📌Note: Firestore rules should allow read/write access for development:
+
+```js
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
+```
+
+### 3. Create a React App (if not already)
+
+```sh
+npm create vite@latest my-firestore-app
+cd my-firestore-app
+npm install firebase tailwindcss @tailwindcss/vite
+```
+### 4. Configure Tailwind CSS for Vite React
+
+#### `vite.config.js`
+```js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [react(),
+    tailwindcss(),
+  ],
+})
+```
+
+#### `src/index.css`
+```css
+@import "tailwindcss";
+```
+
+### 5. Set Up Firebase Configuration
+
+Create a file called `firebaseConfig.js` in your `src` directory:
+
+#### `src/firebaseConfig.js`
+
+```js
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+export { auth, db };
+```
+
+#### Create a file called `.env` in the project root directory, and place the API keys in the following format
+```bash
+VITE_FIREBASE_API_KEY=YOUR_API_KEY
+VITE_FIREBASE_AUTH_DOMAIN=YOUR_AUTH_DOMAIN
+VITE_FIREBASE_DATABASE_URL=YOUR_DATABASE_URL
+VITE_FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
+VITE_FIREBASE_STORAGE_BUCKET=YOUR_STORAGE_BUCKET_ID
+VITE_FIREBASE_MESSAGING_SENDER_ID=YOUR_MESSAGING_ID
+VITE_FIREBASE_APP_ID=YOUR_APP_ID
+```
+
+#### Make sure to add the `.env` file directory in `.gitignore` file.
+```bash
+.env
+```
+
+### 6. Create Pages
+
+#### `src/App.jsx`
+
+```jsx
+import { useEffect, useState } from "react";
+import {collection,addDoc,updateDoc,deleteDoc,doc,onSnapshot} from "firebase/firestore";
+import { db } from "./firebaseConfig";
+
+export default function App() {
+  const [groceries, setGroceries] = useState([]);
+  const [input, setInput] = useState("");
+  const [editId, setEditId] = useState(null);
+
+  const groceryRef = collection(db, "groceries");
+
+  // Read data in real-time
+  useEffect(() => {
+    const unsubscribe = onSnapshot(groceryRef, (snapshot) => {
+      const items = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setGroceries(items);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // Create or Update item
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (editId) {
+      const docRef = doc(db, "groceries", editId);
+      await updateDoc(docRef, { name: input });
+      setEditId(null);
+    } else {
+      await addDoc(groceryRef, { name: input });
+    }
+    setInput("");
+  };
+
+  // Set item to be edited
+  const handleEdit = (item) => {
+    setInput(item.name);
+    setEditId(item.id);
+  };
+
+  // Delete item
+  const handleDelete = async (id) => {
+    const docRef = doc(db, "groceries", id);
+    await deleteDoc(docRef);
+  };
+
+  return (
+    <div className="min-h-screen flex justify-center items-center bg-gray-100">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h1 className="text-2xl font-bold mb-4 text-center">Grocery List</h1>
+        <form onSubmit={handleSubmit} className="flex mb-4">
+          <input
+            className="flex-grow p-2 border border-gray-300 rounded-l"
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Enter grocery item"
+            required
+          />
+          <button
+            type="submit"
+            className="bg-green-500 text-white px-4 rounded-r hover:bg-green-600"
+          >
+            {editId ? "Update" : "Add"}
+          </button>
+        </form>
+        <ul>
+          {groceries.map((item) => (
+            <li
+              key={item.id}
+              className="flex justify-between items-center border-b py-2"
+            >
+              <span>{item.name}</span>
+              <div className="space-x-2">
+                <button
+                  className="text-blue-500"
+                  onClick={() => handleEdit(item)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="text-red-500"
+                  onClick={() => handleDelete(item.id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+```
+
+#### `main.jsx`
+
+```jsx
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+```
+
+#### [Click here to redirect to Firestore Database Template with Vite React](https://github.com/VJLIVE/Vite-React-Firestore-Database-Template)

@@ -1,0 +1,137 @@
+
+# DOM Manipulation and ES6 Features
+
+## What is the DOM?
+
+The **Document Object Model (DOM)** is the structure of an HTML page represented as a tree. JavaScript can be used to access, modify, and manipulate elements in this structure.
+
+---
+
+## Selecting Elements
+
+You can use different methods to select elements from the page:
+
+### By ID
+```js
+const heading = document.getElementById("main-title");
+```
+
+### By Class
+```js
+const items = document.getElementsByClassName("list-item");
+```
+
+### Query Selectors (Modern)
+```js
+const button = document.querySelector("button");
+const allItems = document.querySelectorAll(".list-item");
+```
+
+---
+
+## Changing Content
+
+### Inner Text
+```js
+heading.innerText = "Updated Title";
+```
+
+### Inner HTML
+```js
+heading.innerHTML = "<em>Updated with HTML</em>";
+```
+
+---
+
+## Handling Events
+
+JavaScript can respond to user interactions like clicks, inputs, etc.
+
+### Click Event
+```js
+button.addEventListener("click", () => {
+  alert("Button clicked!");
+});
+```
+
+### Input Event
+```js
+input.addEventListener("input", (e) => {
+  console.log(e.target.value);
+});
+```
+
+---
+
+## ES6 (Modern JavaScript) Features
+
+ES6 introduced several powerful and cleaner ways to write JavaScript.
+
+### 1. `let` and `const`
+```js
+let count = 0;
+const PI = 3.14;
+```
+
+### 2. Arrow Functions
+```js
+const add = (a, b) => a + b;
+```
+
+### 3. Template Literals
+```js
+const name = "Alice";
+console.log(`Hello, ${name}!`);
+```
+
+### 4. Destructuring
+```js
+const user = { name: "John", age: 25 };
+const { name, age } = user;
+```
+
+### 5. Spread and Rest Operators
+```js
+const arr1 = [1, 2];
+const arr2 = [...arr1, 3]; // Spread
+
+function sum(...nums) {
+  return nums.reduce((a, b) => a + b);
+}
+```
+
+---
+
+## Optional Chaining (?.)
+
+Avoids errors when accessing deeply nested properties.
+
+```js
+const profile = {
+  user: {
+    name: "Tom"
+  }
+};
+
+console.log(profile.user?.name); // Tom
+console.log(profile.contact?.email); // undefined (no error)
+```
+
+---
+
+## Resources to Explore More
+
+- [DOM Guide on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+- [JavaScript ES6 Features](https://www.javascripttutorial.net/es6/)
+- [JavaScript Event Reference](https://developer.mozilla.org/en-US/docs/Web/Events)
+
+---
+
+That wraps up the JavaScript basics! 🎉
+
+You've now learned how to:
+- Write JS syntax and logic
+- Work with arrays and objects
+- Interact with the DOM
+- Use modern ES6 features
+

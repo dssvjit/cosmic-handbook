@@ -1,0 +1,54 @@
+# Getting Started with Streamlit
+
+## Introduction & Why Streamlit?
+
+Streamlit is an **open-source Python framework** that makes it easy to build and deploy **data-driven web applications** with minimal code. It is widely used for **machine learning models, data visualization, and dashboard applications**.
+
+### Why Choose Streamlit Over Flask/Django?
+
+Streamlit offers a **faster and more intuitive** way to build interactive web apps for data science and analytics compared to Flask or Django. It is designed to be **declarative and simple**, allowing developers to focus on logic rather than frontend development.
+
+## Installation & Setup
+
+To start using Streamlit, you first need to install it via pip:
+
+### Install Streamlit via pip:
+
+```sh
+pip install streamlit
+```
+
+### Now, let's create a simple Streamlit app
+
+This basic setup initializes a new Streamlit application and displays "Hello, Streamlit!" using the `st.write()` function.
+
+```python
+import streamlit as st
+
+st.title("Hello, Streamlit!")
+st.write("Welcome to your first Streamlit app!")
+```
+
+### Key Differences Between Streamlit & Flask/Django
+
+Streamlit is often compared with Flask and Django, as all three can be used to build web applications. However, there are key differences:
+
+| Feature       | Streamlit                      | Flask/Django                |
+| ------------- | ------------------------------ | --------------------------- |
+| Performance   | Optimized for data apps        | General-purpose web apps    |
+| Frontend      | Auto-generated UI              | Requires HTML/CSS/JS        |
+| ML/AI Focus   | Yes                            | No (needs extra setup)      |
+| Interactivity | Built-in widgets               | Requires manual setup       |
+| Deployment    | Easy (Streamlit Cloud, Heroku) | More complex (Servers, DBs) |
+
+Streamlit is ideal for **data-driven dashboards and ML models**, whereas Flask/Django is better suited for **full-scale web applications**.
+
+### Running the App in Local Environment
+
+To run a Streamlit app, use the following command:
+
+```sh
+streamlit run app.py
+```
+
+This will start a local server and open the app in your browser.
